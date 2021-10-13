@@ -98,10 +98,10 @@ Components
 
 Landing Page
 
-NAVIGATION BAR
+- NAVIGATION BAR
 
 	- Book Now Button
-			- when this button is clicked it will redirect to the calendar/booking form.
+		- when this button is clicked it will redirect to the calendar/booking form.
 	- Services Button
 		- when this button is clicked i will be able to view a summary of all services the studio offers to clients.
 	- Account

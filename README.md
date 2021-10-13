@@ -1,70 +1,116 @@
-# Getting Started with Create React App
+Final Project Pitch
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+Summary
+- The goal of this project is to create an internal booking system for a recording studio. We do not want to be dependent on third party booking services such as square and Calendly
+we want to facility users to be able to find all services and employees that work at this studio and make it easy to book and track booking.
+ 
+User Story
 
-## Available Scripts
+- As a user I am able to visit website and view unauthenticated app.
+- Unauthenticated app will have landing page, services and book now pages.
 
-In the project directory, you can run:
+- As a user I can sign up or log in if I already have an account created
+- As a user I can book services and select the date I want and the time available.
+- As a user I can view my total cost of the services I am booking.
+- As a user I can edit my booking time and service.
+Can review services/employees
+ 
+Stretch Goals
+As a user I can be brought into a checkout page where I can pay for the services in advanced
+As a user I will receive an email confirmation with all booking info
+As an employee I can log in and view how many appointments I have pending. 
 
-### `yarn start`
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
 
-The page will reload if you make edits.\
-You will also see any lint errors in the console.
+Technologies
+-React.js
+-Ruby on rails API
+-Material UI
+-Styled Components
+	
 
-### `yarn test`
+wireframe 
+https://www.figma.com/file/Zv5j36gIFFRPWekHqJJ9Up/Book-Now?node-id=0%3A1
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+https://app.asana.com/0/1201177606710171/board
 
-### `yarn build`
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+Models and Relationships
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+Users
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+- has many appointments.
+- has many services through appointments .
+- has many employees through services.
 
-### `yarn eject`
+Employees
+- has many appointments.
+- has many services.
+- has many users through appointments.
+- has many reviews through services.
 
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
+Services
+Belongs to employee.
+- Has many appointments .
+- Has many reviews.
 
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+Appointments
+- Belongs to user.
+- Belongs to service.
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
+Reviews
+- belongs to users.
+- Belongs to service.
 
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
+Components
+- Navigation Bar
+  - Book Now
+  - Services
+  - Sign Up
+  - Log In
+- Landing Page (Home) (“/”)
+	-  < Nav Bar/>
+	- Image centered
+	- Additional Book Now Button with the same function as nav book now button
+- Services (“/services”)
+	- Grid of 4 services
+		- Recording
+		- Mixing
+		- Mastering
+		- Live Sound
 
-## Learn More
+- Individual Services (services/:id
+	- Expanded view for:
+		- Recording
+			- Provide further details of service
+		- Mixing
+			- Provide further details of service
+		- Mastering
+			- Provide further details of service
+		- Live sound
+			- Provide further details of service
+- Book Now (“/booking”)
+	- Image slide show
+	- Length of service selector
+	- Space/engineer option
+	- Submit button
+	- Cancellation policy for selected service
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+Landing Page
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+NAVIGATION BAR
 
-### Code Splitting
+	- Book Now Button
+			- when this button is clicked it will redirect to the calendar/booking form.
+	- Services Button
+		- when this button is clicked i will be able to view a summary of all services the studio offers to clients.
+	- Account
+		- When this button is clicked it will bring me to users account where they can see detailed info.
+	- Sign Up
+		- when clicked it will bring me to the sign-up form
+	- Sign in
+		- when clicked it will bring me to the log in form. (possible oauth use)
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
 
-### Analyzing the Bundle Size
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
 
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `yarn build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)

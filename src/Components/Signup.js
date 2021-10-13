@@ -5,10 +5,10 @@ function Signup({ setCurrentUser }) {
   const history = useHistory()
   const [username, setUsername] = useState('')
   const [password, setPassword] = useState('')
-
+  const [error, setError] = useState("");
   
-  const handleSubmit = (event) => {
-    event.preventDefault()
+  const handleSubmit = (e) => {
+    e.preventDefault()
     fetch('http://localhost:3000/signup', {
       method: 'POST',
       headers: {
@@ -17,24 +17,39 @@ function Signup({ setCurrentUser }) {
       body: JSON.stringify({
         username,
         password,
-      })
+      }),
     })
-      .then(res => {
+    .then((res) => {
         if (res.ok) {
-          res.json().then(user => {
-            setCurrentUser(user)
-            history.push('/login')
-          })
+          res.json().then((user) => {
+            setCurrentUser(user);
+            history.push("/");
+          });
         } else {
-          res.json().then(errors => {
-            console.error(errors)
-          })
+          res.json().then((error) => {
+            console.log(error);
+            setError(error);
+          });
         }
-      })
-  }
+      });
+    }
+  
   return (
     <div className="authForm">
       <form onSubmit={handleSubmit}>
+      <p>
+          {error ? (
+            <>
+              {error.error.map((error) => (
+                <strong key={error}>
+                  <li style={{color: "red"}}>{error}</li>
+                </strong>
+              ))}
+            </>
+          ) : (
+            <></>
+          )}
+        </p>
         <h1>Sign Up</h1>
         <p>
           <label 
@@ -66,6 +81,7 @@ function Signup({ setCurrentUser }) {
         <p>-- or --</p>
         <p><Link to="/login">Log In</Link></p>
       </form>
+
     </div>
   )
 }

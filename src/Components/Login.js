@@ -5,7 +5,7 @@ function Login({ setCurrentUser }) {
   const history = useHistory()
   const [username, setUsername] = useState('')
   const [password, setPassword] = useState('')
-  
+  const [errors, setErrors] = useState("");
   const handleSubmit = (event) => {
     event.preventDefault()
     fetch('http://localhost:3000/login', {
@@ -23,10 +23,9 @@ function Login({ setCurrentUser }) {
             history.push('/groups')
           })
         } else {
-          setCurrentUser({ username: "Ronald" })
-          history.push('/groups')
           res.json().then(errors => {
             console.error(errors)
+            setErrors(errors);
           })
         }
       })
@@ -35,6 +34,19 @@ function Login({ setCurrentUser }) {
     <div className="authForm">
       <Redirect to="/" />
       <form onSubmit={handleSubmit}>
+      <p>
+          {errors ? (
+            <>
+              {errors.errors.map((error) => (
+                <strong key={error}>
+                  <li style={{color: "red"}}>{error}</li>
+                </strong>
+              ))}
+            </>
+          ) : (
+            <></>
+          )}
+        </p>
         <h1>Log In</h1>
         <p>
           <label 

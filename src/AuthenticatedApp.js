@@ -1,4 +1,8 @@
 import './App.css';
+import Fab from '@mui/material/Fab';
+import LogoutIcon from '@mui/icons-material/Logout';
+import Typography from '@mui/material/Typography';
+
 import { Switch, Route, NavLink, useHistory } from 'react-router-dom'
 
 function AuthenticatedApp({ currentUser, setCurrentUser }) {
@@ -23,7 +27,13 @@ function AuthenticatedApp({ currentUser, setCurrentUser }) {
           <NavLink to="/groups">Groups</NavLink>{" - "}
           <NavLink to="/events">Events</NavLink>
         </span> */}
-        <span>Logged in as {currentUser.username} <button onClick={handleLogout}>Logout</button></span>
+        <span>Logged in as {currentUser.username} </span>
+        <Fab variant="extended" size="medium" color="primary" aria-label="add" onClick={handleLogout}>      
+        <LogoutIcon >Logout</LogoutIcon>
+        <Typography variant="button" display="block" gutterBottom>
+          Logout
+      </Typography>
+      </Fab>
       </nav>
       {/* <Switch>
         <Route path="/groups">

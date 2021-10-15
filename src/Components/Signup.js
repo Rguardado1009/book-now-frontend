@@ -38,17 +38,7 @@ function Signup({ setCurrentUser }) {
     <div className="authForm">
       <form onSubmit={handleSubmit}>
       <p>
-          {error ? (
-            <>
-              {error.error.map((error) => (
-                <strong key={error}>
-                  <li style={{color: "red"}}>{error}</li>
-                </strong>
-              ))}
-            </>
-          ) : (
-            <></>
-          )}
+          
         </p>
         <h1>Sign Up</h1>
         <p>
@@ -64,6 +54,7 @@ function Signup({ setCurrentUser }) {
             onChange={(e) => setUsername(e.target.value)}
           />
         </p>
+        <p>{error.username}</p>
         <p>
           <label 
             htmlFor="password"
@@ -77,6 +68,7 @@ function Signup({ setCurrentUser }) {
             onChange={(e) => setPassword(e.target.value)}
           />
         </p>
+       <p> {error.password} </p>
         <p><button type="submit">Sign Up</button></p>
         <p>-- or --</p>
         <p><Link to="/login">Log In</Link></p>

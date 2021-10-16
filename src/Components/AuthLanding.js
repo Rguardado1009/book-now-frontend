@@ -5,7 +5,6 @@ import Stack from '@mui/material/Stack';
 import LoginIcon from '@mui/icons-material/Login';
 import {  Link,  } from 'react-router-dom';
 import Services from './Services';
-import Footer from './Footer';
 
 
 export default function AuthLanding() {
@@ -20,7 +19,6 @@ export default function AuthLanding() {
         </Link>
     </Stack>
    <Services/>
-   <Footer/>
         </div>
     )
 }

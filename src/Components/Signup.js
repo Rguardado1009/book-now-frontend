@@ -12,7 +12,7 @@ function Signup({ setCurrentUser }) {
   const history = useHistory()
   const [username, setUsername] = useState('')
   const [password, setPassword] = useState('')
-  const [error, setError] = useState("");
+  const [error, setErrors] = useState("");
   
   const handleSubmit = (e) => {
     e.preventDefault()
@@ -35,7 +35,7 @@ function Signup({ setCurrentUser }) {
         } else {
           res.json().then((error) => {
             console.log(error);
-            setError(error);
+            setErrors(error);
           });
         }
       })
@@ -45,7 +45,7 @@ function Signup({ setCurrentUser }) {
     <Box className="container"
     component="form" onSubmit={handleSubmit}
     sx={{
-      '& .MuiTextField-root': { m: 1, width: '25ch' },
+      '& .MuiTextField-root': { m: 1, width: '40ch' },
     }}
     noValidate
     autoComplete="off"
@@ -53,7 +53,6 @@ function Signup({ setCurrentUser }) {
   <div className="authForm">
     
       <h1>Signup</h1>
-      <p> {error.error}</p>
       <p>
       <TextField
         required
@@ -82,7 +81,7 @@ function Signup({ setCurrentUser }) {
       Signup      
       </Typography>
       </Fab>
-      
+
       <Link to="/login">
       <Fab variant="extended" size="medium" color="primary" 
       aria-label="add" type="submit">      

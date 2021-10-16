@@ -6,6 +6,7 @@ import Typography from '@mui/material/Typography';
 import AssignmentIcon from '@mui/icons-material/Assignment';
 import TextField from '@mui/material/TextField';
 import Box from '@mui/material/Box';
+import Landing from "/Users/ronald/development/Phase-5/book-now-frontend/src/Landing.css"
 
 function Login({ setCurrentUser }) {
   const history = useHistory()
@@ -29,16 +30,16 @@ function Login({ setCurrentUser }) {
             history.push('/')
           })
         } else {
-          res.json().then(errors => {
-            console.error(errors)
+          res.json().then((errors) => {
+            console.log(errors);
             setErrors(errors);
           })
         }
       })
   }
   return (
-    <Box
-      component="form"
+    <Box className="container"
+      component="form" onSubmit={handleSubmit}
       sx={{
         '& .MuiTextField-root': { m: 1, width: '25ch' },
       }}
@@ -46,11 +47,22 @@ function Login({ setCurrentUser }) {
       autoComplete="off"
     >
     <div className="authForm">
-      <Redirect to="/" />
-      <form onSubmit={handleSubmit}>
-     
+      <Redirect to="/login" />
+      
         <h1>Log In</h1>
-        <p> {errors.error}</p>
+        <p>
+          {errors ? (
+            <>
+              {errors.errors.map((error) => (
+                <strong key={error}>
+                  <li style={{color: "red"}}>{error}</li>
+                </strong>
+              ))}
+            </>
+          ) : (
+            <></>
+          )}
+        </p>
         <p>
         <TextField
           required
@@ -89,7 +101,6 @@ function Login({ setCurrentUser }) {
       </Typography>
       </Fab>
       </Link></p>
-      </form>
     </div>
     </Box>
   )

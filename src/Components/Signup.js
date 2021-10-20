@@ -7,10 +7,13 @@ import AssignmentIcon from '@mui/icons-material/Assignment';
 import TextField from '@mui/material/TextField';
 import Box from '@mui/material/Box';
 import Landing from "/Users/ronald/development/Phase-5/book-now-frontend/src/Landing.css"
+import Alert from '@mui/material/Alert';
 
 function Signup({ setCurrentUser }) {
   const history = useHistory()
   const [username, setUsername] = useState('')
+  const [name, setName] = useState('')
+  const [email, setEmail] = useState('')
   const [password, setPassword] = useState('')
   const [error, setErrors] = useState("");
   
@@ -22,6 +25,8 @@ function Signup({ setCurrentUser }) {
         'Content-Type': 'application/json'
       },
       body: JSON.stringify({
+        email,
+        name,
         username,
         password,
       }),
@@ -51,13 +56,48 @@ function Signup({ setCurrentUser }) {
     autoComplete="off"
   >
   <div className="authForm">
-    
-      <h1>Signup</h1>
+  <Typography gutterBottom variant="h2" component="h2" align="center">
+              SIGN-UP
+            </Typography>
+  
+  <p>{error ? (
+            <>
+              {error.errors.map((error) => (
+                <Alert variant="outlined" severity="error" style={{color: "red"}}>{error}</Alert>
+              ))}
+            </>
+          ) : (
+            <></>
+          )}
+        </p>
+      
       <p>
       <TextField
         required
         id="standard-required"
-        label="Username Required"
+        label="Email"
+        defaultValue="Email"
+        variant="standard"
+        value={email}
+        onChange={(e) => setEmail(e.target.value)}
+      />
+      </p>
+      <p>
+      <TextField
+        required
+        id="standard-required"
+        label="Full Name"
+        defaultValue="full name"
+        variant="standard"
+        value={name}
+        onChange={(e) => setName(e.target.value)}
+      />
+      </p>
+      <p>
+      <TextField
+        required
+        id="standard-required"
+        label="Username"
         defaultValue="username"
         variant="standard"
         value={username}
@@ -66,6 +106,7 @@ function Signup({ setCurrentUser }) {
       </p>
       
       <TextField
+        required
         id="standard-password-input"
         label="Password"
         type="password"

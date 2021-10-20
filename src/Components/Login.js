@@ -7,7 +7,7 @@ import AssignmentIcon from '@mui/icons-material/Assignment';
 import TextField from '@mui/material/TextField';
 import Box from '@mui/material/Box';
 import Landing from "/Users/ronald/development/Phase-5/book-now-frontend/src/Landing.css"
-
+import Alert from '@mui/material/Alert';
 function Login({ setCurrentUser }) {
   const history = useHistory()
   const [username, setUsername] = useState('')
@@ -41,7 +41,7 @@ function Login({ setCurrentUser }) {
     <Box className="container"
       component="form" onSubmit={handleSubmit}
       sx={{
-        '& .MuiTextField-root': { m: 1, width: '25ch' },
+        '& .MuiTextField-root': { m: 1, width: '100%' },
       }}
       noValidate
       autoComplete="off"
@@ -49,15 +49,14 @@ function Login({ setCurrentUser }) {
     <div className="authForm">
       <Redirect to="/login" />
       
-        <h1>Log In</h1>
+      <Typography gutterBottom variant="h2" component="h2" align="center">
+              LOG IN
+            </Typography>
         <p>
           {errors ? (
             <>
-              {errors.errors.map((error) => (
-                <strong key={error}>
-                  <li style={{color: "red"}}>{error}</li>
-                </strong>
-              ))}
+
+           <Alert variant="outlined" severity="error" style={{color: "red"}}>{errors.error}</Alert>
             </>
           ) : (
             <></>

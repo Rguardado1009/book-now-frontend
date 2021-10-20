@@ -1,6 +1,8 @@
 import './App.css';
 import * as React from 'react';
 import {useState, useEffect} from "react";
+import { Switch, Route, Link, useHistory } from 'react-router-dom'
+import Button from '@mui/material/Button';
 import Fab from '@mui/material/Fab';
 import LogoutIcon from '@mui/icons-material/Logout';
 import Typography from '@mui/material/Typography';
@@ -9,7 +11,7 @@ import CssBaseline from '@mui/material/CssBaseline';
 import BottomNavigation from '@mui/material/BottomNavigation';
 import BottomNavigationAction from '@mui/material/BottomNavigationAction';
 import Paper from '@mui/material/Paper';
-import { Switch, Route, NavLink, useHistory } from 'react-router-dom'
+import Popover from '@mui/material/Popover';
 import AuthLanding from './Components/AuthLanding';
 import Landing from './Components/Landing';
 import Login from './Components/Login';
@@ -17,6 +19,12 @@ import Signup from './Components/Signup';
 import Services from './Components/Services';
 import Book from './Components/Book';
 import Footer from './Components/Footer';
+import Appointment from './Components/Appointment';
+import AllAppointments from './Components/AllAppointments';
+import CalendarTodayIcon from '@mui/icons-material/CalendarToday';
+import HomeIcon from '@mui/icons-material/Home';
+import AccountCircleIcon from '@mui/icons-material/AccountCircle';
+import ListAltIcon from '@mui/icons-material/ListAlt';
 function AuthenticatedApp({ currentUser, setCurrentUser }) {
   
   const history = useHistory()
@@ -33,7 +41,19 @@ function AuthenticatedApp({ currentUser, setCurrentUser }) {
         }
       })
   }
- 
+  const [anchorEl, setAnchorEl] = useState(null);
+
+  const handleClick = (event) => {
+    setAnchorEl(event.currentTarget);
+  };
+
+  const handleClose = () => {
+    setAnchorEl(null);
+  };
+
+  const open = Boolean(anchorEl);
+  const id = open ? 'simple-popover' : undefined;
+
 
   return (
     <div className="App">
@@ -44,9 +64,37 @@ function AuthenticatedApp({ currentUser, setCurrentUser }) {
         <BottomNavigation
           showLabels
         >
-          logged in as 
-          <BottomNavigationAction label={`logged in as ${currentUser.username}`}/>
-          <BottomNavigationAction label="Logout" icon={<LogoutIcon />} onClick={handleLogout} />
+          <Link to="/" 
+          label={"Home"} style={{ textDecoration: 'none'}}
+          > 
+          <BottomNavigationAction icon={<HomeIcon/>}/> 
+           </Link>
+          <Link to="/appointment/all" 
+          label={"Appointments"} style={{ textDecoration: 'none'}}
+          > 
+          <BottomNavigationAction icon={<CalendarTodayIcon/>}/> 
+           </Link>
+           <Link to="/services" 
+          label={"services"} style={{ textDecoration: 'none'}}
+          > 
+          <BottomNavigationAction icon={<ListAltIcon/>}/> 
+           </Link>
+          {/* <BottomNavigationAction autofocus label="Logout" icon={<LogoutIcon />} 
+          onClick={handleLogout} /> */}
+          <BottomNavigationAction onClick={handleClick} icon={<AccountCircleIcon/>}/>            
+              <Popover
+              id={id}
+              open={open}
+              anchorEl={anchorEl}
+              onClose={handleClose}
+              anchorOrigin={{
+                vertical: 'bottom',
+                horizontal: 'left',
+              }}
+            >
+          <Typography sx={{ p: 2 }}>Logged in as {currentUser.name}</Typography>
+          <Typography  onClick={handleLogout} sx={{ p: 2 }}>Log Out</Typography>
+                </Popover>
         </BottomNavigation>
       </Paper>
     </Box>
@@ -61,6 +109,12 @@ function AuthenticatedApp({ currentUser, setCurrentUser }) {
         <Route path="/services" >
         <Services/>  
         </Route>
+        <Route path="/appointment/all" >
+        <AllAppointments setCurrentUser={setCurrentUser} currentUser={currentUser}/>  
+        </Route>
+        <Route path="/appointment/" >
+        <Appointment  currentUser={currentUser}/>  
+        </Route>
         <Route path="/booking" >
         <Book setCurrentUser={setCurrentUser} currentUser={currentUser} />  
         </Route>
@@ -70,9 +124,9 @@ function AuthenticatedApp({ currentUser, setCurrentUser }) {
         <Route path="/signup" setCurrentUser={setCurrentUser}>
           <Signup />
         </Route>
-        <Route path="/landing">
+        {/* <Route path="/landing">
         <Landing setCurrentUser={setCurrentUser}/>  
-        </Route>
+        </Route> */}
         <Route path="/">
         <AuthLanding setCurrentUser={setCurrentUser}/>  
         </Route>

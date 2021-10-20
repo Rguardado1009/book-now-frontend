@@ -11,19 +11,19 @@ export default function Landing() {
         <div className="container">
             <h1>Welcome</h1>
     <Stack direction="row" spacing={2}>
-        <Link to="/login">          
+        <Link style={{ textDecoration: 'none' }} to="/login">          
             <Button variant="contained" endIcon={<LoginIcon />}>
             SIGN IN
             </Button>
         </Link>
-        <Link to="/signup">
+        <Link style={{ textDecoration: 'none' }} to="/signup">
             <Button variant="outlined" startIcon={<AssignmentIcon />}>
             SIGN UP
             </Button>
         </Link>
     </Stack>
     <br></br>
-    <Link to="/signup">          
+    <Link  style={{ textDecoration: 'none' }} to="/signup">          
             <Button variant="contained" endIcon={<LoginIcon />}>
             BOOK NOW
             </Button>

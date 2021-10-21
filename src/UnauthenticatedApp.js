@@ -1,3 +1,4 @@
+import './App.css';
 import React from 'react'
 import {useState, useEffect} from "react";
 import { Switch, Route, Redirect,Link } from 'react-router-dom'
@@ -40,7 +41,7 @@ function UnauthenticatedApp({ setCurrentUser }) {
 
 
   return (
-    <div>
+    <div className='homePage'>
         <Box sx={{ pb: 7 }} ref={ref}>
       <CssBaseline />
 
@@ -54,7 +55,7 @@ function UnauthenticatedApp({ setCurrentUser }) {
           <BottomNavigationAction icon={<HomeIcon/>}/> 
            </Link>
           <Link to="/services" 
-          label={"Appointments"} style={{ textDecoration: 'none'}}
+          label={"services"} style={{ textDecoration: 'none'}}
           > 
           <BottomNavigationAction icon={<ListAltIcon/>}/> 
            </Link>

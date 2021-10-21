@@ -1,0 +1,28 @@
+
+.container{
+    
+    min-height: 100vh; /* height of the browser viewport */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+
+}
+
+
+
+.login{
+    outline: 2px solid black;
+    /* background: rgb(0,153,148); */
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      font-size: calc(10px + 2vmin);
+      color: white;
+}
+
+.authform{
+    /* outline: 2px solid black; */
+}

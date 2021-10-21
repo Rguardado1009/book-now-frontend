@@ -1,3 +1,4 @@
+import './Page.css'
 import React, { useState } from 'react'
 import { Redirect, useHistory, Link } from 'react-router-dom'
 import Fab from '@mui/material/Fab';
@@ -38,7 +39,7 @@ function Login({ setCurrentUser }) {
       })
   }
   return (
-    <Box className="container"
+    <Box className="login"
       component="form" onSubmit={handleSubmit}
       sx={{
         '& .MuiTextField-root': { m: 1, width: '100%' },
@@ -91,7 +92,7 @@ function Login({ setCurrentUser }) {
         </Typography>
         </Fab>
         
-        <Link to="/signup">
+        <Link style={{ textDecoration: 'none' }} to="/signup">
         <Fab variant="extended" size="medium" color="primary" 
         aria-label="add" type="submit">      
         <AssignmentIcon >Login</AssignmentIcon>

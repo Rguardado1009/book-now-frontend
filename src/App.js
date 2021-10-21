@@ -1,3 +1,4 @@
+import './App.css';
 import React, { useState, useEffect } from 'react'
 import AuthenticatedApp from './AuthenticatedApp'
 import UnauthenticatedApp from './UnauthenticatedApp'

@@ -1,4 +1,6 @@
 import React from 'react'
+import { Link, useHistory} from "react-router-dom";
+
 // import AppBar from '@mui/material/AppBar';
 // import Box from '@mui/material/Box';
 // import Button from '@mui/material/Button';
@@ -21,6 +23,8 @@ import Stack from '@mui/material/Stack';
 import RateReviewIcon from '@mui/icons-material/RateReview';
 import EditIcon from '@mui/icons-material/Edit';
 export default function AllAppointmentsCard({appointment}) {
+
+    const history = useHistory()
     const start = new Date(appointment.start_time)
     const end = new Date(appointment.end_time)
     let options = {
@@ -32,8 +36,15 @@ export default function AllAppointmentsCard({appointment}) {
     let endTime = end.toLocaleString('en-US', options);
     const diff = start - end;
     const duration = new Date(diff).getHours();
-console.log(duration);
-    return (
+
+    const handleDelete = ()=>{
+        fetch(`http://localhost:3000/appointments/${appointment.id}`, {
+            method: 'DELETE'
+    }).then(()=>{
+        window.location.reload(true);
+
+    })}
+     return (
         <div>
 
              <Card evelation={6}>
@@ -42,7 +53,7 @@ console.log(duration);
                 title={appointment.service.name}
                 
                 subheader={`${appointment.date}`}
-                />
+                /> 
                 <CardContent>
                     <Typography variant="body2" color="textSecondary">
                 <Stack direction="column" spacing={2}>
@@ -55,13 +66,18 @@ console.log(duration);
                 <Button variant="outlined" startIcon={<RateReviewIcon />}>
                    Review
                  </Button>
-                 <Button variant="contained" startIcon={<EditIcon />}>
+                 <Link style={{ textDecoration: 'none' }} to={`/appointment/${appointment.id}`}> 
+                 <Button variant="outlined" startIcon={<EditIcon />}>
                    Edit Appointment
+                 </Button>
+                 </Link>
+                 <Button onClick={handleDelete}variant="outlined" startIcon={<DeleteIcon />}>
+                   Cancel Appointment 
                  </Button>
                 </Stack>                    
                     </Typography>
                 </CardContent>
-
+               
               </Card>
         </div>
     )

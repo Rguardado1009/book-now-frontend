@@ -1,3 +1,4 @@
+import './Page.css'
 import React from 'react'
 import Button from '@mui/material/Button';
 import '/Users/ronald/development/Phase-5/book-now-frontend/src/Landing.css';

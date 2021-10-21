@@ -13,8 +13,11 @@ import Alert from '@mui/material/Alert';
 import Stack from '@mui/material/Stack';
 import Typography from '@mui/material/Typography';
 import Appointment from './Appointment'
-
+import NativeSelect from '@mui/material/NativeSelect';
 import {useHistory, Route} from 'react-router-dom'
+
+
+
 export default function Book({currentUser}) {
   const [employee, setEmployee] = useState('')
   const [startTime, setStartTime] = useState('')
@@ -24,7 +27,7 @@ export default function Book({currentUser}) {
   const [errors, setErrors] = useState("");
   const [appointments, setAppointments] = useState(false);
   const history = useHistory()
-
+console.log(errors)
   const handleSubmit = (event) => {
     
     event.preventDefault()
@@ -86,30 +89,31 @@ export default function Book({currentUser}) {
            onSubmit={handleSubmit}
            component="form"
            sx={{
-             '& .MuiTextField-root': { m: 1, width: '25ch' },
+             '& .MuiTextField-root': { m: 2, width: '25ch' },
            }}
            noValidate
            autoComplete="off"
            >
             
-         <div>
-             <Select
-               type="select"
-               labelId="demo-simple-select-label"
-               id="demo-simple-select"
-               value={service}
-               helperText="Select a Services "
-               label=""
-               defaultValue="Recording Session"
-               onChange={(e) => setService(e.target.value)}
-             >
-               <MenuItem value={1}>RECORDING SESSION</MenuItem>
-               <MenuItem value={2}>PREMIUM RECORDING SESSION</MenuItem>
-               <MenuItem value={3}>MIXING</MenuItem>
-               <MenuItem value={4}>MASTER</MenuItem>
-               <MenuItem value={5}>LIVE SOUND</MenuItem>
-             </Select>
-         </div>
+            <InputLabel variant="outlined" htmlFor="uncontrolled">
+          Services
+        </InputLabel>
+        <br></br>
+        <NativeSelect
+        
+            value={service}
+            onChange={(e) => setService(e.target.value)}
+          inputProps={{
+            name: 'Service',
+            id: 'uncontrolled-native',
+          }}
+        >
+          <option value={1}>RECORDING SESSION</option>
+          <option value={2}>PREMIUM RECORDING SESSION</option>
+          <option value={3}>MIXING</option>
+          <option value={4}>MASTER</option>
+          <option value={5}>LIVE SOUND</option>
+        </NativeSelect>
          <div>
              <TextField
                type="text"
@@ -152,23 +156,26 @@ export default function Book({currentUser}) {
              />
          </div>
          <div>
-           <Select
-             type="select"
-             labelId="demo-simple-select-label"
-             id="demo-simple-select"
-             value={employee}
-             helperText="Select an Employee to work with "
-             label="Select Employee "
-             defaultValue="Select Employee"
-             onChange={(e) => setEmployee(e.target.value)}
-           >
-             <MenuItem value={1}>Engineer 1</MenuItem>
-             <MenuItem value={2}>Engineer 2</MenuItem>
-             <MenuItem value={3}>Engineer 3</MenuItem>
-             <MenuItem value={4}>Engineer 4</MenuItem>
-             <MenuItem value={5}>Engineer 5</MenuItem>
-           </Select>
+         <InputLabel variant="outlined" htmlFor="uncontrolled">
+          Employees
+        </InputLabel>
+        <br></br>
+        <NativeSelect
+            value={employee}
+            onChange={(e) => setEmployee(e.target.value)}
+          inputProps={{
+            name: 'Employees',
+            id: 'uncontrolled-native',
+          }}
+        >
+          <option value={1}>Engineer 1</option>
+          <option value={2}>Engineer 2</option>
+          <option value={3}>Engineer 3</option>
+          <option value={4}>Engineer 4</option>
+          <option value={5}>Engineer 5</option>
+        </NativeSelect>
          </div>
+         <br></br>
            <Button onClick={handleSubmit} variant="contained" endIcon={<LoginIcon />}>
                <Typography  variant="button" component="h6" align="center">
                 Book NOW

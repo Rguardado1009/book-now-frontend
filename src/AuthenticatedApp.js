@@ -25,6 +25,8 @@ import CalendarTodayIcon from '@mui/icons-material/CalendarToday';
 import HomeIcon from '@mui/icons-material/Home';
 import AccountCircleIcon from '@mui/icons-material/AccountCircle';
 import ListAltIcon from '@mui/icons-material/ListAlt';
+import EditAppointment from './Components/EditAppointment';
+
 function AuthenticatedApp({ currentUser, setCurrentUser }) {
   
   const history = useHistory()
@@ -112,6 +114,9 @@ function AuthenticatedApp({ currentUser, setCurrentUser }) {
         <Route path="/appointment/all" >
         <AllAppointments setCurrentUser={setCurrentUser} currentUser={currentUser}/>  
         </Route>
+        <Route path="/appointment/:id" >
+        <EditAppointment setCurrentUser={setCurrentUser} currentUser={currentUser}/>  
+        </Route>
         <Route path="/appointment/" >
         <Appointment  currentUser={currentUser}/>  
         </Route>
@@ -130,6 +135,9 @@ function AuthenticatedApp({ currentUser, setCurrentUser }) {
         <Route path="/">
         <AuthLanding setCurrentUser={setCurrentUser}/>  
         </Route>
+        <Route path="*">
+					<h1>404 not found</h1>
+				</Route>
       </Switch>
     </div>
   );

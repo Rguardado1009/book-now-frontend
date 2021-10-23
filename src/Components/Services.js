@@ -12,7 +12,7 @@ useEffect(()=>{
 }, [])
 
     return (
-      <Container className="App-header" >
+      <Container className="services">
         <Grid container spacing="3">
 {services.map(service =>(
     <Grid item lg= {6} md={4} key={service.id}>

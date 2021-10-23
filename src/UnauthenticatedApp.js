@@ -21,7 +21,10 @@ import Footer from './Components/Footer';
 import ListAltIcon from '@mui/icons-material/ListAlt';
 import HomeIcon from '@mui/icons-material/Home';
 import AccountCircleIcon from '@mui/icons-material/AccountCircle';
-
+import GlobalStyles from '@mui/material/GlobalStyles';
+import AppBar from '@mui/material/AppBar';
+import BookOnlineSharpIcon from '@mui/icons-material/BookOnlineSharp';
+import Toolbar from '@mui/material/Toolbar';
 
 function UnauthenticatedApp({ setCurrentUser }) {
   // const history = useHistory()
@@ -32,39 +35,38 @@ function UnauthenticatedApp({ setCurrentUser }) {
     setAnchorEl(event.currentTarget);
   };
 
-  const handleClose = () => {
-    setAnchorEl(null);
-  };
-
-  const open = Boolean(anchorEl);
-  const id = open ? 'simple-popover' : undefined;
 
 
   return (
-    <div className='homePage'>
-        <Box sx={{ pb: 7 }} ref={ref}>
+    <div className='Unauth'>
+     <GlobalStyles styles={{ ul: { margin: 0, padding: 0, listStyle: 'none' } }} />
       <CssBaseline />
-
-      <Paper sx={{ position: 'fixed', top: 0, left: 0, right: 0 }} elevation={3}>
-        <BottomNavigation
-          showLabels
-        >
-          <Link to="/" 
+      <AppBar
+        position="static"
+        style={{backgroundColor: '#009994', color: '#fffff'}}
+        elevation={0}
+        // sx={{ borderBottom: (theme) => `1px solid ${theme.palette.divider}` }}
+      >
+        <Toolbar sx={{ flexWrap: 'wrap' }}>
+          <Typography variant="h6" color="inherit" noWrap sx={{ flexGrow: 1 }}>
+           Book Now
+          </Typography>
+          <nav>
+            <Link to="/" 
           label={"Home"} style={{ textDecoration: 'none'}}
           > 
-          <BottomNavigationAction icon={<HomeIcon/>}/> 
+          <BottomNavigationAction  icon={<HomeIcon/>}/> 
            </Link>
-          <Link to="/services" 
+           <Link to="/services" 
           label={"services"} style={{ textDecoration: 'none'}}
           > 
           <BottomNavigationAction icon={<ListAltIcon/>}/> 
            </Link>
+          </nav>
          
-          {/* <BottomNavigationAction autofocus label="Logout" icon={<LogoutIcon />} 
-          onClick={handleLogout} /> */}
-        </BottomNavigation>
-      </Paper>
-    </Box>
+        </Toolbar>
+      </AppBar>
+
 
 
     <Switch>
@@ -81,8 +83,10 @@ function UnauthenticatedApp({ setCurrentUser }) {
         <Landing/>
       </Route>
       <Redirect to="/" />
+      <Route path="*">
+					<h1>404 not found</h1>
+				</Route>
     </Switch>
-
     </div>
   )
 }

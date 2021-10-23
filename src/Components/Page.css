@@ -1,7 +1,7 @@
-
+/* 
 .container{
-    
-    min-height: 100vh; /* height of the browser viewport */
+      outline: 2px solid red;
+    min-height: 100vh; height of the browser viewport
     display: flex;
     justify-content: center;
     align-items: center;
@@ -12,8 +12,8 @@
 
 
 .login{
-    outline: 2px solid black;
-    /* background: rgb(0,153,148); */
+    outline: 2px solid red;
+    background: rgb(0,153,148);
       min-height: 100vh;
       display: flex;
       flex-direction: column;
@@ -24,5 +24,30 @@
 }
 
 .authform{
-    /* outline: 2px solid black; */
+    outline: 2px solid black;
+} */
+
+
+.Bookings-page{
+  outline: 2px dashed green;
+  height: 91.5vh;
+  margin-left:40px;
+  margin-right:40px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.Bookings-Box{
+  outline: 2px dotted blue;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+.Confirmed-Booking{
+  outline: 2px dotted blue;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
 }

@@ -39,7 +39,7 @@ function Login({ setCurrentUser }) {
       })
   }
   return (
-    <Box className="login"
+    <Box 
       component="form" onSubmit={handleSubmit}
       sx={{
         '& .MuiTextField-root': { m: 1, width: '100%' },
@@ -47,10 +47,10 @@ function Login({ setCurrentUser }) {
       noValidate
       autoComplete="off"
     >
-    <div className="authForm">
+    <div >
       <Redirect to="/login" />
       
-      <Typography gutterBottom variant="h2" component="h2" align="center">
+      <Typography gutterBottom variant="h2" component="h2">
               LOG IN
             </Typography>
         <p>

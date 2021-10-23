@@ -1,4 +1,4 @@
-.App {
+/* .App {
   text-align: center;
 }
 
@@ -15,7 +15,7 @@
 
 .App-header {
   outline: 2px solid black;
-/* background: rgb(0,153,148); */
+background: rgb(0,153,148);
   min-height: 100vh;
   display: flex;
   flex-direction: column;
@@ -27,8 +27,8 @@
 
 .App-link {
   color: #61dafb;
-}
-
+} */
+/* 
 @keyframes App-logo-spin {
   from {
     transform: rotate(0deg);
@@ -40,14 +40,124 @@
 
 .container{
   outline: 2px solid black;
-  min-height: 100vh; /* height of the browser viewport */
+  padding: 20px;
+  min-height: 100vh; height of the browser viewport
   display: flex;
   justify-content: center;
   align-items: center;
   flex-direction: column;
-}
+} */
 
+/* .navbar{
+  padding: 20px;
+  display: flex;
+  align-items: center;
+  max-width: 600px;
+  margin: 0 auto;
 
+} */
+/* 
+.navbar links{
+ justify-content: center;
+} */
+
+/* 
 .homePage{
-  /* background-color: #009994 */
+  background-color: #009994
+} */
+
+/* .Main-app{
+    outline: 2px solid black;
+
+} */
+html{
+  scroll-behavior: smooth;
 }
+*{
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  
+}
+section{
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+
+}
+
+.App{
+  outline: 2px solid black;
+  height: 100vh;
+  margin-left:20px;
+  margin-right:20px;
+}
+
+.Unauth{
+  outline: 2px dashed red;
+  height: 100vh;
+  margin-left:20px;
+  margin-right:20px;
+  /* height: 200px; */
+}
+
+.Unauth-landing{
+  display: flex;
+  height: 91.5vh;
+  flex-direction: column;
+  justify-content: center;
+  align-content: center; 
+  align-items: center;
+  margin: auto;
+  outline: 2px solid yellow;
+}
+
+.Unauth-box{
+  outline: 2px dotted blue;
+
+}
+
+.Unauth-button-container{
+    display: flex;
+    /* outline: 2px inset black; */
+    flex-basis: auto;
+}
+.Auth{
+  outline: 2px dashed red;
+  height: 100vh;
+  margin-left:20px;
+  margin-right:20px;
+  /* height: 200px; */
+}
+
+.Auth-landing{
+  display: flex;
+  height: 91.5vh;
+  flex-direction: column;
+  justify-content: center;
+  align-content: center; 
+  align-items: center;
+  margin: auto;
+  outline: 2px solid green;
+}
+
+.Auth-box{
+  outline: 2px dotted purple;
+
+}
+
+.Auth-button-container{
+    display: flex;
+    outline: 2px inset orange;
+    flex-basis: auto;
+}
+.services{
+  height: 100vh;
+  padding-top: 5rem;
+
+}
+img{
+  padding-bottom: 3rem;
+} 
+
+ 

@@ -10,15 +10,18 @@ export default function AllAppointments({currentUser}) {
         .then((r) => r.json())
         .then((user) => setUser(user));
       }, [])
-    console.log(currentUser)
+
     return (
-        <Container className="App-header" >
+        <Container>
+          <h1>Total Reviews: {currentUser.reviews.length}</h1>
           <Grid container spacing="3">
   {user.appointments && user.appointments?.map(appointment =>(
       <Grid item lg= {6} md={4} key={appointment.id}>
-        <AllAppointmentsCard appointment={appointment}/>
+        <AllAppointmentsCard currentUser={user} appointment={appointment}/>
+       
         </Grid>
       ))}
+      
     </Grid>
           </Container>
       )}

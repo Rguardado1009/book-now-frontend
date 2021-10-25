@@ -81,23 +81,39 @@ html{
 }
 section{
   height: 100vh;
+  width: 100vh;
   display: flex;
   justify-content: center;
-
+/* Color Theme Swatches in Hex */
+.Mercedes-Petronas-F1-1-hex { color: #979DA6; }
+.Mercedes-Petronas-F1-2-hex { color: #6c7679; }
+.Mercedes-Petronas-F1-3-hex { color: #027373; }
+.Mercedes-Petronas-F1-4-hex { color: #04BFAD; }
+.Mercedes-Petronas-F1-5-hex { color: #0E0F13; }
+/* Color Theme Swatches in Hex */
+.Mercedes-AMG-Petronas-1-hex { color: #FFFFFF; }
+.Mercedes-AMG-Petronas-2-hex { color: #009994; }
+.Mercedes-AMG-Petronas-3-hex { color: #abc0cc; }
+.Mercedes-AMG-Petronas-4-hex { color: #000000; }
+.Mercedes-AMG-Petronas-5-hex { color: #FFFFFF; }
 }
 
 .App{
   outline: 2px solid black;
+  /* background-color: #EBECEE; */
   height: 100vh;
-  margin-left:20px;
-  margin-right:20px;
+  /* margin-left:20px;
+  margin-right:20px; */
 }
 
 .Unauth{
   outline: 2px dashed red;
   height: 100vh;
-  margin-left:20px;
-  margin-right:20px;
+  /* background-color: #EBECEE; */
+;
+
+  /* margin-left:20px;
+  margin-right:20px; */
   /* height: 200px; */
 }
 
@@ -109,11 +125,13 @@ section{
   align-content: center; 
   align-items: center;
   margin: auto;
-  outline: 2px solid yellow;
+  /* background-color: #4D565B; */
+
+  /* outline: 2px solid yellow; */
 }
 
 .Unauth-box{
-  outline: 2px dotted blue;
+  /* outline: 2px dotted blue; */
 
 }
 
@@ -123,10 +141,13 @@ section{
     flex-basis: auto;
 }
 .Auth{
-  outline: 2px dashed red;
+  /* outline: 2px dashed red; */
   height: 100vh;
-  margin-left:20px;
-  margin-right:20px;
+  /* background-color: #EBECEE; */
+;
+
+  /* margin-left:20px;
+  margin-right:20px; */
   /* height: 200px; */
 }
 
@@ -138,17 +159,20 @@ section{
   align-content: center; 
   align-items: center;
   margin: auto;
-  outline: 2px solid green;
+  /* background-color: #EBECEE; */
+
+
+  /* outline: 2px solid green; */
 }
 
 .Auth-box{
-  outline: 2px dotted purple;
+  /* outline: 2px dotted purple; */
 
 }
 
 .Auth-button-container{
     display: flex;
-    outline: 2px inset orange;
+    /* outline: 2px inset orange; */
     flex-basis: auto;
 }
 .services{
@@ -160,4 +184,3 @@ img{
   padding-bottom: 3rem;
 } 
 
- 

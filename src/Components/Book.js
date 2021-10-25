@@ -1,35 +1,81 @@
 import * as React from 'react';
-import { useState, useEffect } from 'react'
+import { useState } from 'react'
 import Box from '@mui/material/Box';
 import TextField from '@mui/material/TextField';
-import Services from './Services'
 import InputLabel from '@mui/material/InputLabel';
-import MenuItem from '@mui/material/MenuItem';
 import FormControlLabel from '@mui/material/FormControlLabel';
 import Button from '@mui/material/Button';
 import LoginIcon from '@mui/icons-material/Login';
-import Select from '@mui/material/Select';
 import Alert from '@mui/material/Alert';
 import Stack from '@mui/material/Stack';
 import Typography from '@mui/material/Typography';
 import Appointment from './Appointment'
 import NativeSelect from '@mui/material/NativeSelect';
-import {useHistory, Route} from 'react-router-dom'
+import {useHistory} from 'react-router-dom'
 import DateAdapter from '@mui/lab/AdapterLuxon';
 import TimePicker from '@mui/lab/TimePicker';
 import LocalizationProvider from '@mui/lab/LocalizationProvider';
 import DesktopDatePicker from '@mui/lab/DesktopDatePicker';
-import Checkbox from '@mui/material/Checkbox';
-import Grid from '@mui/material/Grid';
+import styled from "styled-components";
+
 import './Page.css'
 
+const Container = styled.div`
+
+  min-width: 400px;
+  backdrop-filter: blur(35px);
+  background-color: rgba(255, 255, 255, 0.8);
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding: 0 2rem;
+  @media (max-width: 900px) {
+    width: 100vw;
+    position: absolute;
+    padding: 0;
+  }
+  h4 {
+    color: #0E0F13;
+    font-weight: bold;
+    font-size: 20px;
+    margin-top: 2rem;
+    margin-bottom: 2rem;
+    span {
+      color: #ff8d8d;
+      cursor: pointer;
+    }
+  }
+  h5 {
+    color: #0E0F13;
+    font-weight: bold;
+    margin-top: 1rem;
+    font-size: 15px;    
+  }
+`;
+
+const LogoWrapper = styled.div`
+  }
+  h3 {
+    color: #009994;
+    text-align: center;
+    font-size: 22px;
+    
+  }
+  span {
+    color: #0E0F13;
+    /* font-weight: 300; */
+    font-size: 22px;
+  }
+`;
 
 export default function Book({currentUser}) {
-  const [employee, setEmployee] = useState('')
+  const [employee, setEmployee] = useState(1)
   const [startTime, setStartTime] = useState('')
   const [endTime, setEndTime] = useState('')
   const [date, setDate] = useState('')
-  const [service, setService] = useState('')
+  const [service, setService] = useState(1)
   const [errors, setErrors] = useState("");
   const [appointments, setAppointments] = useState(false);
   const history = useHistory()
@@ -85,20 +131,9 @@ const handleEnd = (newValue) => {
     return (
       <div className="Bookings-page">
        {appointments ===false  ? (
-         <div>
+         <Container >
           
-             <p>
-             {errors ? (
-               <>
-                 {errors.errors.map((error) => (
-                   <Stack sx={{ width: '100%' }} spacing={2}>
-                <Alert variant="outlined" severity="error" style={{color: "red"}}>{error}</Alert> </Stack>
-                 ))}
-               </>
-             ) : (
-               <></>
-             )}
-           </p>
+           
            <Box className="Bookings-Box"
            onSubmit={handleSubmit}
            component="form"
@@ -108,16 +143,38 @@ const handleEnd = (newValue) => {
            noValidate
            autoComplete="off"
            >
-          <Typography variant="h4" gutterBottom>
-           Book Your Appointment
+               <p>
+             {errors ? (
+               <>
+                 {errors.errors.map((error) => (
+                   <Stack sx={{ width: '100%' }} spacing={4}>
+                <Alert variant="outlined" severity="error" 
+                style={{color: "red"}}
+                >
+                  <strong>{error}</strong>
+                  </Alert> 
+                </Stack>
+                 ))}
+               </>
+             ) : (
+               <></>
+             )}
+           </p>
+           <LogoWrapper>
+        <h3>
+          Book <span>Your Session</span>
+        </h3>
+      </LogoWrapper>
+        <Typography variant="h5" gutterBottom>
+            Select Service
          </Typography>
 {/*             
             <InputLabel variant="outlined" htmlFor="uncontrolled">
           Services
         </InputLabel>
          */}
-        <NativeSelect
-        
+        <NativeSelect className="Bookings-service-select"
+       style={{textAlignLast:"center"}}
             value={service}
             onChange={(e) => setService(e.target.value)}
           inputProps={{
@@ -131,8 +188,8 @@ const handleEnd = (newValue) => {
           <option value={4}>MASTER</option>
           <option value={5}>LIVE SOUND</option>
         </NativeSelect>
-        
-             <TextField
+        <br></br>
+             <TextField className="Bookings-name"
                type="text"
                id="fullname"
                label="Full Name"
@@ -163,15 +220,13 @@ const handleEnd = (newValue) => {
               onChange={handleEnd}
               renderInput={(params) => <TextField {...params} />}
              />
-         
-         </LocalizationProvider>
-        
-         <InputLabel variant="outlined" htmlFor="uncontrolled">
-          Employees
-        </InputLabel>
-        <br></br>
+         </LocalizationProvider>        
+         <Typography variant="h5" gutterBottom>
+            Select Employees
+         </Typography>
         <NativeSelect
             value={employee}
+            style={{textAlignLast:"center"}}
             onChange={(e) => setEmployee(e.target.value)}
           inputProps={{
             name: 'Employees',
@@ -186,7 +241,8 @@ const handleEnd = (newValue) => {
         </NativeSelect>
        
          <br></br>
-           <Button  onClick={handleSubmit} variant="contained" endIcon={<LoginIcon />}>
+           <Button  style={{backgroundColor: '#009994', color: '#ffff'}} 
+           onClick={handleSubmit} variant="contained" endIcon={<LoginIcon />}>
                <Typography  variant="button" component="h6" align="center">
                 Book NOW
                </Typography>
@@ -194,7 +250,7 @@ const handleEnd = (newValue) => {
         
          </Box>
          <p>{setDate}</p>
-         </div>
+         </Container>
         ) : (
           <div className="appointment">
 					{appointments === true && <Appointment date={date} startTime={startTime} endTime={endTime} currentUser={currentUser} 
@@ -204,103 +260,6 @@ const handleEnd = (newValue) => {
 			</div>
         )
       }   
-<Typography variant="h6" gutterBottom>
-        Shipping address
-      </Typography>
-      <Grid container spacing={3}>
-        <Grid item xs={12} sm={6}>
-          <TextField
-            required
-            id="firstName"
-            name="firstName"
-            label="First name"
-            fullWidth
-            autoComplete="given-name"
-            variant="standard"
-          />
-        </Grid>
-        <Grid item xs={12} sm={6}>
-          <TextField
-            required
-            id="lastName"
-            name="lastName"
-            label="Last name"
-            fullWidth
-            autoComplete="family-name"
-            variant="standard"
-          />
-        </Grid>
-        <Grid item xs={12}>
-          <TextField
-            required
-            id="address1"
-            name="address1"
-            label="Address line 1"
-            fullWidth
-            autoComplete="shipping address-line1"
-            variant="standard"
-          />
-        </Grid>
-        <Grid item xs={12}>
-          <TextField
-            id="address2"
-            name="address2"
-            label="Address line 2"
-            fullWidth
-            autoComplete="shipping address-line2"
-            variant="standard"
-          />
-        </Grid>
-        <Grid item xs={12} sm={6}>
-          <TextField
-            required
-            id="city"
-            name="city"
-            label="City"
-            fullWidth
-            autoComplete="shipping address-level2"
-            variant="standard"
-          />
-        </Grid>
-        <Grid item xs={12} sm={6}>
-          <TextField
-            id="state"
-            name="state"
-            label="State/Province/Region"
-            fullWidth
-            variant="standard"
-          />
-        </Grid>
-        <Grid item xs={12} sm={6}>
-          <TextField
-            required
-            id="zip"
-            name="zip"
-            label="Zip / Postal code"
-            fullWidth
-            autoComplete="shipping postal-code"
-            variant="standard"
-          />
-        </Grid>
-        <Grid item xs={12} sm={6}>
-          <TextField
-            required
-            id="country"
-            name="country"
-            label="Country"
-            fullWidth
-            autoComplete="shipping country"
-            variant="standard"
-          />
-        </Grid>
-        <Grid item xs={12}>
-          <FormControlLabel
-            control={<Checkbox color="secondary" name="saveAddress" value="yes" />}
-            label="Use this address for payment details"
-          />
-        </Grid>
-      </Grid>
-
       </div>
 
     );

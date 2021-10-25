@@ -1,40 +1,36 @@
 import './App.css';
 import * as React from 'react';
-import {useState, useEffect} from "react";
+import {useState} from "react";
 import { Switch, Route, Link, useHistory } from 'react-router-dom'
-import IconButton from '@mui/material/IconButton';
-import Fab from '@mui/material/Fab';
-import Typography from '@mui/material/Typography';
-import Box from '@mui/material/Box';
-import CssBaseline from '@mui/material/CssBaseline';
-import BottomNavigation from '@mui/material/BottomNavigation';
-import BottomNavigationAction from '@mui/material/BottomNavigationAction';
-import Paper from '@mui/material/Paper';
-import Popover from '@mui/material/Popover';
 import AuthLanding from './Components/AuthLanding';
 import Login from './Components/Login';
 import Signup from './Components/Signup';
 import Services from './Components/Services';
 import Book from './Components/Book';
 import Appointment from './Components/Appointment';
+import EditAppointment from './Components/EditAppointment';
 import AllAppointments from './Components/AllAppointments';
+import AllReviews from './Components/AllReviews';
+import Checkout from './Components/Checkout';
+import IconButton from '@mui/material/IconButton';
+import Typography from '@mui/material/Typography';
+import CssBaseline from '@mui/material/CssBaseline';
+import BottomNavigationAction from '@mui/material/BottomNavigationAction';
+import Popover from '@mui/material/Popover';
 import CalendarTodayIcon from '@mui/icons-material/CalendarToday';
 import HomeIcon from '@mui/icons-material/Home';
 import AccountCircleIcon from '@mui/icons-material/AccountCircle';
 import ListAltIcon from '@mui/icons-material/ListAlt';
-import EditAppointment from './Components/EditAppointment';
 import BookOnlineSharpIcon from '@mui/icons-material/BookOnlineSharp';
-import Reviews from './Components/Reviews';
+import ReviewsIcon from '@mui/icons-material/Reviews';
 import AppBar from '@mui/material/AppBar';
-import Grid from '@mui/material/Grid';
-import StarIcon from '@mui/icons-material/StarBorder';
 import Toolbar from '@mui/material/Toolbar';
 import GlobalStyles from '@mui/material/GlobalStyles';
-import Container from '@mui/material/Container';
+import styled from "styled-components";
+import logo from "/Users/ronald/development/Phase-5/book-now-frontend/src/Logo 3 copy 2.PNG";
 function AuthenticatedApp({ currentUser, setCurrentUser }) {
   
   const history = useHistory()
-  const ref = React.useRef(null);
   const handleLogout = () => {
     fetch(`http://localhost:3000/logout`, {
       method: 'DELETE',
@@ -63,55 +59,7 @@ function AuthenticatedApp({ currentUser, setCurrentUser }) {
 
   return (
     <div className="Auth">
-          {/* <Box className ="Auth-box" sx={{ pb: 0 }} ref={ref}>
-      <CssBaseline/>
-
-      <Paper className ="Auth-box"  
-      // variant='permanent' sx={{ position: 'fixed', top: 0, bottom: '95', right: '50%', left:'50%'}} elevation={4}
-      >
-        <BottomNavigation
-      
-          >
-          <Link to="/" 
-          label={"Home"} style={{ textDecoration: 'none'}}
-          > 
-          <BottomNavigationAction style={{backgroundColor: '#009994', color: '#292929'}} icon={<HomeIcon/>}/> 
-           </Link>
-          <Link to="/booking" 
-          label={"booking"} style={{ textDecoration: 'none'}}
-          > 
-          <BottomNavigationAction style={{backgroundColor: '#009994', color: '#292929'}} icon={<BookOnlineSharpIcon/>}/> 
-           </Link>
-          <Link to="/appointment/all" 
-          label={"Appointments"} style={{ textDecoration: 'none'}}
-          > 
-          <BottomNavigationAction style={{backgroundColor: '#009994', color: '#292929'}} icon={<CalendarTodayIcon/>}/> 
-           </Link>
-           <Link to="/services" 
-          label={"services"} style={{ textDecoration: 'none'}}
-          > 
-          <BottomNavigationAction style={{backgroundColor: '#009994', color: '#292929'}} icon={<ListAltIcon/>}/> 
-           </Link>
-          {/* <BottomNavigationAction autofocus label="Logout" icon={<LogoutIcon />} 
-          onClick={handleLogout} /> 
-          <BottomNavigationAction style={{alignItems: 'center'}} onClick={handleClick} icon={<AccountCircleIcon/>}/>            
-              <Popover
-              id={id}
-              open={open}
-              anchorEl={anchorEl}
-              onClose={handleClose}
-              anchorOrigin={{
-                vertical: 'bottom',
-                horizontal: 'left',
-              }}
-            >
-          <Typography sx={{ p: 1 }}>Logged in as {currentUser.name}</Typography>
-          <Typography  onClick={handleLogout} sx={{ p: 1 }}>Log Out</Typography>
-                </Popover>
-        </BottomNavigation>
-      </Paper>
-    </Box> */}
-
+       
 <GlobalStyles styles={{ ul: { margin: 0, padding: 0, listStyle: 'none' } }} />
       <CssBaseline />
       <AppBar
@@ -121,9 +69,16 @@ function AuthenticatedApp({ currentUser, setCurrentUser }) {
         sx={{ borderBottom: (theme) => `1px solid ${theme.palette.divider}` }}
       >
         <Toolbar sx={{ flexWrap: 'wrap' }}>
-          <Typography variant="h6" color="inherit" noWrap sx={{ flexGrow: 1 }}>
+        <Typography variant="h6" color="inherit" noWrap sx={{ flexGrow: 1 }}>
+        <LogoWrapper>
+        <h3>
+          Treehouse <span>Studios</span>
+        </h3>
+      </LogoWrapper>
+      </Typography> 
+          {/* <Typography variant="h6" color="inherit" noWrap sx={{ flexGrow: 1 }}>
            Book Now
-          </Typography>
+          </Typography> */}
           <nav>
             <Link to="/" 
           label={"Home"} style={{ textDecoration: 'none'}}
@@ -145,21 +100,12 @@ function AuthenticatedApp({ currentUser, setCurrentUser }) {
           > 
           <BottomNavigationAction icon={<ListAltIcon/>}/> 
            </Link>
+           <Link to="/reviews" 
+          label={"reviews"} style={{ textDecoration: 'none'}}
+          > 
+          <BottomNavigationAction icon={<ReviewsIcon/>}/> 
+           </Link>
           </nav>
-          {/* <BottomNavigationAction onClick={handleClick} icon={<AccountCircleIcon/>}/>             */}
-              {/* <Popover
-              id={id}
-              open={open}
-              anchorEl={anchorEl}
-              onClose={handleClose}
-              anchorOrigin={{
-                vertical: 'bottom',
-                horizontal: 'left',
-              }}
-            >
-          <Typography sx={{ p: 1 }}>Logged in as {currentUser.name}</Typography>
-          <Typography  onClick={handleClick} sx={{ p: 1 }}>Log Out</Typography>
-                </Popover> */}
           <IconButton onClick={handleClick}  style={{backgroundColor: '#009994', color: '#292929'}} href="#" variant="outlined" 
            >
              {<AccountCircleIcon/>}
@@ -184,7 +130,7 @@ function AuthenticatedApp({ currentUser, setCurrentUser }) {
 
       <Switch>
         <Route path="/reviews" >
-        <Reviews currentUser={currentUser}/>  
+        <AllReviews currentUser={currentUser}/>  
         </Route>
         <Route path="/services" >
         <Services/>  
@@ -198,6 +144,9 @@ function AuthenticatedApp({ currentUser, setCurrentUser }) {
         <Route path="/appointment/" >
         <Appointment  currentUser={currentUser}/>  
         </Route>
+        <Route path="/checkout" >
+        <Checkout setCurrentUser={setCurrentUser} currentUser={currentUser} />  
+        </Route>
         <Route path="/booking" >
         <Book setCurrentUser={setCurrentUser} currentUser={currentUser} />  
         </Route>
@@ -207,9 +156,6 @@ function AuthenticatedApp({ currentUser, setCurrentUser }) {
         <Route path="/signup" setCurrentUser={setCurrentUser}>
           <Signup />
         </Route>
-        {/* <Route path="/landing">
-        <Landing setCurrentUser={setCurrentUser}/>  
-        </Route> */}
         <Route path="/">
         <AuthLanding setCurrentUser={setCurrentUser}/>  
         </Route>
@@ -220,5 +166,16 @@ function AuthenticatedApp({ currentUser, setCurrentUser }) {
     </div>
   );
 }
-
+const LogoWrapper = styled.div`
+  h3 {
+    color: #292929;
+    text-align: left;
+    font-size: 22px;
+  }
+  span {
+    color: #fff;
+    font-weight: 300;
+    font-size: 18px;
+  }
+`;
 export default AuthenticatedApp;

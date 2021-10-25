@@ -30,7 +30,7 @@ export default function Landing() {
         </Link>
         <Link align="center" style={{ textDecoration: 'none' }} to="/signup">
             <Button style={{backgroundColor: '#009994', color: '#ffff'}} fullWidth="true" align="center" size="large" variant="outlined" startIcon={<AssignmentIcon />}>
-            SIGN UP
+            REGISTER
             </Button>
         </Link>
         </Stack>

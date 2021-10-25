@@ -6,7 +6,7 @@ import Button from '@mui/material/Button';
 import Box from '@mui/material/Box';
 import Divider from '@mui/material/Divider';
 import Stack from '@mui/material/Stack';
-
+import './Page.css'
 import AllAppointments from './AllAppointments'
 function Appointment({currentUser,
     employee,
@@ -40,8 +40,10 @@ function Appointment({currentUser,
     console.log(newStart)
     return (
         <div>
-            {appointments === false  ? (
-        <div className="Confirmed-Booking">
+
+        <div 
+        className="Confirmed-Booking"
+        >
              <Stack  sx={{ width: '50%' }} direction="column" spacing={2} align="center">
                     <Box component="h1" sx={{ display: 'inline' }}>{currentUser.name} Your Booking has been confirmed here are the details</Box>
                     <Divider variant="insert" />
@@ -64,18 +66,17 @@ function Appointment({currentUser,
             <p>Service: {services.name}</p>
             <p>Engineer: {employees.name}</p>
             <p> Rate: $ {services.hourly_rate}</p> */}
-            <Button style={{backgroundColor: '#009994', color: '#ffff'}} variant="contained" onClick={()=>setAppointments(true)}>
+            <Link to="/appointment/all">
+            <Button style={{backgroundColor: '#009994', color: '#ffff'}} variant="contained" 
+            // onClick={()=>setAppointments(true)}
+            >
             <Typography variant="h6" component="h6" align="center">
              View All Appointments
             </Typography>
             </Button>
+            </Link>
             </Stack>
         </div>
-            ) : (
-                <div>
-                {appointments === true && <AllAppointments employees={employees} currentUser={currentUser}/>}
-                </div>
-            )}
         </div>
     )
 }

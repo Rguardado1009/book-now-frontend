@@ -6,7 +6,7 @@ import Card from '@mui/material/Card';
 import CardContent from '@mui/material/CardContent';
 import CardHeader from '@mui/material/CardHeader';
 import Typography from '@mui/material/Typography';
-import Reviews from './Reviews'
+import CreateReviews from './CreateReviews'
 import Button from '@mui/material/Button';
 import DeleteIcon from '@mui/icons-material/Delete';
 import Stack from '@mui/material/Stack';
@@ -15,7 +15,7 @@ import EditIcon from '@mui/icons-material/Edit';
 import List from '@mui/material/List';
 import ListItem from '@mui/material/ListItem';
 import ListItemText from '@mui/material/ListItemText';
-export default function AllAppointmentsCard({appointment, currentUser, reviews}) {
+export default function AllAppointmentsCard({appointment, currentUser}) {
 
     const history = useHistory()
     const [show, setShow] = useState(false);
@@ -52,7 +52,7 @@ export default function AllAppointmentsCard({appointment, currentUser, reviews})
      return (
         <div>{show === false  ? ( 
 
-             <Card sx={{ maxWidth: 540, maxHeight: 960}} elevation={6}>
+             <Card style={{color: '#292929', textAlign:'center'}} sx={{ maxWidth: 540, maxHeight: 960}} elevation={6}>
                 <CardHeader   className="all-card"
                   
                 
@@ -66,20 +66,27 @@ export default function AllAppointmentsCard({appointment, currentUser, reviews})
                   justifyContent="center"
                   alignItems="center"
                   spacing={2}>
-                      <List
+                      <List 
                       sx={{ width: '100%', maxWidth: 345, bgcolor: 'background.paper' }}
                       aria-label="contacts">
                     <ListItem disablePadding>
-                         <ListItemText  primary={`Start Time: ${startTime}`} />
+                         <ListItemText 
+                         style={{ display:'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center'}}
+                         primary={`Start Time: ${startTime}`} />
                     </ListItem>
                     <ListItem disablePadding>
-                         <ListItemText  primary={`End Time: ${endTime}`} />
+                         <ListItemText 
+                         style={{ display:'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center'}} 
+                         primary={`End Time: ${endTime}`} />
                     </ListItem>
                     <ListItem disablePadding>
-                         <ListItemText  primary={`Engineer: ${appointment.employee.name}`} />
+                         <ListItemText style={{ display:'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center'}} 
+                         primary={`Engineer: ${appointment.employee.name}`} />
                     </ListItem>
                     <ListItem disablePadding>
-                         <ListItemText  primary={`Rate: $ ${appointment.service.hourly_rate}`} />
+                         <ListItemText 
+                         style={{ display:'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center'}}
+                          primary={`Rate: $ ${appointment.service.hourly_rate}`} />
                     </ListItem>
                     </List>
                 <Button style={{backgroundColor: '#009994', color: '#ffff'}} onClick={()=> setShow(true)} variant="outlined" startIcon={<RateReviewIcon />}>
@@ -102,7 +109,7 @@ export default function AllAppointmentsCard({appointment, currentUser, reviews})
                 ) : ( 
                      
             <div>
-            {show === true && <Reviews show={show} setShow={setShow} appointment={appointment} currentUser={currentUser}/>}
+            {show === true && <CreateReviews show={show} setShow={setShow} appointment={appointment} currentUser={currentUser}/>}
             </div>)}
         </div>
     )

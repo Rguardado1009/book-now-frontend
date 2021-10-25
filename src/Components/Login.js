@@ -7,8 +7,11 @@ import Typography from '@mui/material/Typography';
 import AssignmentIcon from '@mui/icons-material/Assignment';
 import TextField from '@mui/material/TextField';
 import Box from '@mui/material/Box';
-import Landing from "/Users/ronald/development/Phase-5/book-now-frontend/src/Landing.css"
 import Alert from '@mui/material/Alert';
+import Stack from '@mui/material/Stack';
+import styled from "styled-components";
+import Input from "./Input";
+import logo from "/Users/ronald/development/Phase-5/book-now-frontend/src/Logo 3 copy 2.PNG";
 function Login({ setCurrentUser }) {
   const history = useHistory()
   const [username, setUsername] = useState('')
@@ -39,32 +42,52 @@ function Login({ setCurrentUser }) {
       })
   }
   return (
-    <Box 
-      component="form" onSubmit={handleSubmit}
+    
+    <Container >
+      <Box 
+    className="login-Box"
+    //   component="form" onSubmit={handleSubmit}
       sx={{
         '& .MuiTextField-root': { m: 1, width: '100%' },
       }}
       noValidate
       autoComplete="off"
     >
-    <div >
+      <Form onSubmit={handleSubmit}>
       <Redirect to="/login" />
+       <LogoWrapper>
+        <center>
+      <img src={logo} alt="" />
+        </center>
+        <h3>
+          Treehouse <span>Studios</span>
+        </h3>
+      </LogoWrapper>
       
-      <Typography gutterBottom variant="h2" component="h2">
+      <h3>
+      {/* <Typography gutterBottom variant="h2" component="h2"> */}
               LOG IN
-            </Typography>
-        <p>
-          {errors ? (
-            <>
-
-           <Alert variant="outlined" severity="error" style={{color: "red"}}>{errors.error}</Alert>
-            </>
-          ) : (
-            <></>
-          )}
-        </p>
-        <p>
-        <TextField
+            {/* </Typography> */}
+          </h3>
+            <p>
+             {errors ? (
+               <>
+                 {errors.errors.map((error) => (
+                   <Stack sx={{ width: '100%' }} spacing={4}>
+                <Alert variant="outlined" severity="error" 
+                style={{color: "red"}}
+                >
+                  <strong>{error}</strong>
+                  </Alert> 
+                </Stack>
+                 ))}
+               </>
+             ) : (
+               <></>
+             )}
+           </p>
+  
+        <TextField className="login-input"
           required
           id="standard-required"
           label="Username Required"
@@ -73,9 +96,8 @@ function Login({ setCurrentUser }) {
           value={username}
           onChange={(e) => setUsername(e.target.value)}
         />
-        </p>
         
-        <TextField
+        <TextField className="login-input"
           id="standard-password-input"
           label="Password"
           type="password"
@@ -83,7 +105,7 @@ function Login({ setCurrentUser }) {
           variant="standard"
           value={password}
           onChange={(e) => setPassword(e.target.value)}/>
-        <p>
+      
         <Fab variant="extended" size="medium" color="primary" 
         aria-label="add" type="submit">      
         <LoginIcon >Login</LoginIcon>
@@ -91,19 +113,96 @@ function Login({ setCurrentUser }) {
         Login      
         </Typography>
         </Fab>
-        
+
+        <h4>
+          Don't have an account? {' '}
         <Link style={{ textDecoration: 'none' }} to="/signup">
-        <Fab variant="extended" size="medium" color="primary" 
-        aria-label="add" type="submit">      
-        <AssignmentIcon >Login</AssignmentIcon>
-        <Typography variant="button" display="block" gutterBottom>
-        Sign Up      
-      </Typography>
-      </Fab>
-      </Link></p>
-    </div>
+          
+          <span>Register</span>
+        </Link>
+        </h4>
+    </Form>
     </Box>
+    </Container>
   )
 }
 
+const Form = styled.form`
+
+  /* outline: 2px dotted blue; */
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  h3 {
+    color: #0E0F13;
+    margin-bottom: 2rem;
+  }
+  button {
+    width: 75%;
+    max-width: 350px;
+    min-width: 250px;
+    height: 40px;
+    border: none;
+    margin: 1rem 0;
+    box-shadow: 0px 14px 9px -15px rgba(0, 0, 0, 0.25);
+    border-radius: 8px;
+    background-color: #009994;
+    color: #fff;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.2s ease-in;
+    &:hover {
+      transform: translateY(-3px);
+    }
+  }
+`;
+
+const LogoWrapper = styled.div`
+  img {
+    /* text-align: center;
+    width: 35%;
+    height: 35%; */
+    height: 18rem;
+  }
+  h3 {
+    color: #009994;
+    text-align: center;
+    font-size: 22px;
+  }
+  span {
+    color: #0E0F13;
+    font-weight: 300;
+    font-size: 18px;
+  }
+`;
+
+const Container = styled.div`
+
+  min-width: 400px;
+  backdrop-filter: blur(35px);
+  background-color: rgba(255, 255, 255, 0.8);
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding: 0 2rem;
+  @media (max-width: 900px) {
+    width: 100vw;
+    position: absolute;
+    padding: 0;
+  }
+  h4 {
+    color: #0E0F13;
+    font-weight: bold;
+    font-size: 13px;
+    margin-top: 2rem;
+    span {
+      color: #ff8d8d;
+      cursor: pointer;
+    }
+  }
+`;
 export default Login

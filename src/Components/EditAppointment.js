@@ -5,9 +5,7 @@ import Card from '@mui/material/Card';
 import Box from '@mui/material/Box';
 import Alert from '@mui/material/Alert';
 import TextField from '@mui/material/TextField';
-import UpdateIcon from '@mui/icons-material/Update';
 import NavigateBeforeIcon from '@mui/icons-material/NavigateBefore';
-import Divider from '@mui/material/Divider';
 import CardContent from '@mui/material/CardContent';
 import CardHeader from '@mui/material/CardHeader';
 import Typography from '@mui/material/Typography';
@@ -15,14 +13,19 @@ import Button from '@mui/material/Button';
 import Stack from '@mui/material/Stack';
 import { Container, Grid } from "@material-ui/core";
 import NativeSelect from '@mui/material/NativeSelect';
-import InputLabel from '@mui/material/InputLabel';
 import DateAdapter from '@mui/lab/AdapterLuxon';
 import TimePicker from '@mui/lab/TimePicker';
 import LocalizationProvider from '@mui/lab/LocalizationProvider';
 import DesktopDatePicker from '@mui/lab/DesktopDatePicker';
-
-
-
+import List from '@mui/material/List';
+import ListItem from '@mui/material/ListItem';
+import ListItemText from '@mui/material/ListItemText';
+import Checkbox from '@mui/material/Checkbox';
+import Dialog from '@mui/material/Dialog';
+import DialogActions from '@mui/material/DialogActions';
+import DialogContent from '@mui/material/DialogContent';
+import DialogContentText from '@mui/material/DialogContentText';
+import DialogTitle from '@mui/material/DialogTitle';
 const EditAppointment = () => {
 const history = useHistory()
 const { id } = useParams();
@@ -34,7 +37,6 @@ const [startTime, setStartTime] = useState('')
 const [endTime, setEndTime] = useState('')
 const [date, setDate] = useState('')
 const [service, setService] = useState('')
-const [errors, setErrors] = useState("");
 const handleSubmit = (event) => {
     event.preventDefault()
     fetch(`http://localhost:3000/appointments/${number}`, {
@@ -46,7 +48,7 @@ const handleSubmit = (event) => {
         start_time: startTime,
         end_time: endTime,
         date: date,
-        // user_id: currentUser.id,
+
         service_id: service,
         employee_id: employee,
       })
@@ -104,15 +106,47 @@ let options = {
 let aptStart = start.toLocaleString('en-US', options);
 let aptEnd = end.toLocaleString('en-US', options);
 
+
+const [checkService, setCheckService] = useState(true)
+    const [checkDate, setCheckDate] = useState(true)
+    const [checkStart, setCheckStart] = useState(true)
+    const [checkEnd, setCheckEnd] = useState(true)
+    const [checkEngineer, setCheckEngineer] = useState(true)
+    // const [checkRate, setCheckRate] = useState(true)
+    const [error, setErrors] = useState("");
+
+    const [open, setOpen] = useState(false);
+        const handleClickOpen = () => {
+          setOpen(true);
+        };
+        const handleClose = () => {
+          setOpen(false);
+        };
+    
+    //     let FullName = currentUser.name
+    //     let Initial = FullName.charAt(0)
 if(Object.keys(appointment).length !==0){
   return( 
   <div>
+       <Box
+      sx={{display: 'flex',
+        justifyContent:"center",
+        gap: '10px',
+        '& > :not(style)': {
+          m: 6,
+          width: '30vh',
+          height: '45vh',
+        },
+    }}
+
+    >
     <Container sx={{ width: '100%' }}  >
-      <Grid sx={{ width: '100%' }}  spacing="6">
-        <Card sx={{ width: '100%' }} evelation={6}>
-          <CardHeader title="Appointment" subheader='Edit Info Below'/>
+      <Grid sx={{ width: '100%' }}  spacing="2">
+      <Card elevation={3}>
+      <CardHeader
+      title="My Appointment"/>
           <p>
-            {errors ? (<>{errors.errors.map((error) => (
+            {error ? (<>{error.errors.map((error) => (
             <Stack sx={{ width: '100%' }} 
             justifyContent="center"
             alignItems="center"
@@ -126,89 +160,145 @@ if(Object.keys(appointment).length !==0){
               </p>
               <CardContent>
                 <Typography variant="body2" color="textSecondary">
-                  <Stack sx={{ width: '100%' }} direction="row" 
-                  justifyContent="center"
-                  alignItems="center"
-                  spacing={2}>
-                    <Stack sx={{ width: '100%' }} direction="column" 
+                      <Stack sx={{ width: '100%' }} direction="column" spacing={2}>
+                      <List  sx={{ display: 'flex',
+        justifyContent:"center", flexDirection:"column",
+        width: '50%', maxWidth: 260, bgcolor: 'background.paper' }}>
+      <ListItem>
+        <ListItemText primary="Service" secondary={`${appointment.service.name}`} />
+      </ListItem>
+      <ListItem>
+        <ListItemText primary="Date" secondary={`${appointment.date}`} />
+      </ListItem>
+      <ListItem>
+        <ListItemText primary="Start Time" secondary={`${aptStart}`} />
+      </ListItem>
+      <ListItem>
+        <ListItemText primary="End Time" secondary={`${aptEnd}`} />
+      </ListItem>
+      <ListItem>
+        <ListItemText primary="Engineer" secondary={`${appointment.employee.name}`} />
+      </ListItem>
+      <ListItem>
+        <ListItemText primary="Rate" secondary={`USD $ ${appointment.service.hourly_rate}`} />
+      </ListItem>
+    </List>
+
+    <Dialog open={open} onClose={handleClose}>
+         <DialogTitle>Update Appointment Below</DialogTitle>
+      
+        <p>{error ? (
+            <>
+              {error.errors.map((error) => (
+                <Alert variant="outlined" severity="error" style={{color: "red"}}>{error}</Alert>
+              ))}
+            </>
+          ) : (
+            <></>
+          )}
+        </p>
+        <DialogContent>
+          <DialogContentText>
+            Please Check the field you'd like to update.
+          </DialogContentText>
+          
+          <Stack
+      component="form"
+      sx={{
+        '& .MuiTextField-root': { m: 1, width: '25ch' },
+      }}
+      noValidate
+      autoComplete="off"
+    >
+        <Stack sx={{ width: '100%' }} direction="row" 
                       justifyContent="center"
                       alignItems="center"
-                      spacing={4}>
-                      <Box component="h3" sx={{ display: 'inline' }}>{appointment.service.name}</Box>
-                      <Divider variant="insert" />
-                      <Box component="h3" sx={{ display: 'inline' }}>{appointment.date}</Box>
-                      <Divider variant="insert" />
-                      <Box component="h3" sx={{ display: 'inline' }}>{aptStart}</Box>
-                      <Divider variant="insert" />
-                      <Box component="h3" sx={{ display: 'inline' }}>{aptEnd}</Box>
-                      <Divider variant="insert" />
-                      <Box component="h3" sx={{ display: 'inline' }}>{appointment.employee.name}</Box>
-                      <Divider variant="insert" />
-                      <Box component="h2" sx={{ display: 'inline' }}>USD $ {appointment.service.hourly_rate}</Box>
-                      </Stack>
-                      <Stack sx={{ width: '100%' }} direction="column" spacing={2}>
-                    <Box
-                      onSubmit={handleSubmit}
-                      component="form"sx={{'& .MuiTextField-root': { m: 2, width: '25ch' },}}
-                      validate
-                      autoComplete="off">
-                        <InputLabel variant="outlined" htmlFor="uncontrolled">
-                          Services
-                          </InputLabel>
-                          <NativeSelect
-                            value={service}
-                            onChange={(e) => setService(e.target.value)}
-                            inputProps={{
-                              name: 'Service',
-                              id: 'uncontrolled-native',}}>
-                            <option value={1}>RECORDING SESSION</option>
-                            <option value={2}>PREMIUM RECORDING SESSION</option>
-                            <option value={3}>MIXING</option>
-                            <option value={4}>MASTER</option>
-                            <option value={5}>LIVE SOUND</option>
-                          </NativeSelect>
-                          <LocalizationProvider dateAdapter={DateAdapter}>
-                            <Stack spacing={3}>
-                              <DesktopDatePicker
-                                label="Date"
-                                inputFormat="MM/dd/yyyy"
-                                value={date}
-                                onChange={handleDate}
-                                renderInput={(params) => <TextField {...params} />}/>
-                            </Stack>
-                            <TimePicker
-                              label="Start Time"
-                              value={startTime}
-                              onChange={handleStart}
-                              renderInput={(params) => <TextField {...params} />}/>
-                            <TimePicker
-                              label="End Time"
-                              value={endTime}
-                              onChange={handleEnd}
-                              renderInput={(params) => <TextField {...params} />}/>
-                          </LocalizationProvider>
-                          <InputLabel variant="outlined" htmlFor="uncontrolled">
-                            Employees
-                          </InputLabel>
-                          <NativeSelect
-                          value={employee}
-                          onChange={(e) => setEmployee(e.target.value)}
-                          inputProps={{
-                            name: 'Employees',
-                            id: 'uncontrolled-native',}}>
-                              <option value={1}>Engineer 1</option>
-                              <option value={2}>Engineer 2</option>
-                              <option value={3}>Engineer 3</option>
-                              <option value={4}>Engineer 4</option>
-                              <option value={5}>Engineer 5</option>
-                          </NativeSelect>
-                          <Button onClick={handleSubmit} variant="contained" endIcon={<UpdateIcon />}>
-                            <Typography  variant="button" component="h6" align="center">
-                              Update
-                            </Typography>
-                          </Button>
-                      </Box>
-                    </Stack>                    
+                      spacing={2}>
+    
+            <Checkbox onChange={(e) => setCheckService(!checkService)}  /> 
+            <ListItem>
+        <ListItemText primary="Service" secondary={  
+                    <NativeSelect
+                    disabled={checkService}
+                        value={service}
+                        onChange={(e) => setService(e.target.value)}
+                        inputProps={{
+                            name: 'Service',
+                            id: 'controlled-native',}}>
+                    <option value={1}>RECORDING SESSION</option>
+                    <option value={2}>PREMIUM RECORDING SESSION</option>
+                    <option value={3}>MIXING</option>
+                    <option value={4}>MASTER</option>
+                    <option value={5}>LIVE SOUND</option>
+                    </NativeSelect>} />
+        </ListItem>
+            </Stack>
+            <LocalizationProvider dateAdapter={DateAdapter}>
+     <Stack direction="row">
+
+     <Checkbox onChange={(e) => setCheckDate(!checkDate)} />  
+        <DesktopDatePicker
+         disabled={checkDate}
+        label="Date"
+        inputFormat="MM/dd/yyyy"
+        value={date}
+        onChange={handleDate}
+        renderInput={(params) => <TextField {...params} />}/>
+    </Stack>
+
+    <Stack direction="row">
+       <Checkbox onChange={(e) => setCheckStart(!checkStart)}/>
+       <TimePicker
+        disabled={checkStart}
+       label="Start Time"
+       value={startTime}
+       onChange={handleStart}
+       renderInput={(params) => <TextField {...params} />}/>
+    </Stack>
+
+     <Stack direction="row">
+     <Checkbox onChange={(e) => setCheckEnd(!checkEnd)} /> 
+     <TimePicker
+         disabled={checkEnd}
+        label="End Time"
+        value={endTime}
+        onChange={handleEnd}
+        renderInput={(params) => <TextField {...params} />}/>
+    </Stack>
+    </LocalizationProvider>
+     <Stack direction="row">
+     <Checkbox onChange={(e) => setCheckEngineer(!checkEngineer)} /> 
+        <ListItem>
+        <ListItemText primary="Employee" secondary={  
+                      <NativeSelect
+                      disabled={checkEngineer}
+                     value={employee}
+                     onChange={(e) => setEmployee(e.target.value)}
+                     inputProps={{
+                       name: 'Employees',
+                       id: 'uncontrolled-native',}}>
+                         <option value={1}>Engineer 1</option>
+                         <option value={2}>Engineer 2</option>
+                         <option value={3}>Engineer 3</option>
+                         <option value={4}>Engineer 4</option>
+                         <option value={5}>Engineer 5</option>
+                     </NativeSelect> }/>
+          </ListItem>
+                    
+    </Stack>
+    </Stack>
+    </DialogContent>
+
+        <DialogActions>
+          <Button onClick={handleClose}>Cancel</Button>
+          <Button onClick={handleSubmit}>Update</Button>
+
+        </DialogActions>
+      </Dialog>
+                  <Button style={{backgroundColor: '#009994', color: '#ffff'}} variant="outlined" onClick={handleClickOpen}>
+       Edit Appointment
+       </Button>
+                    {/* </Stack>                     */}
               </Stack>
             </Typography>
           </CardContent>
@@ -218,6 +308,7 @@ if(Object.keys(appointment).length !==0){
           Back
         </Button>
     </Container>
+    </Box>
 </div>
 )}
  else{

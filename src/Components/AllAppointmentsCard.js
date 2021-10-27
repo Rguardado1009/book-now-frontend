@@ -1,7 +1,6 @@
 import React from 'react'
-import { Link, useHistory} from "react-router-dom";
-import {useState, useEffect} from "react";
-
+import { Link} from "react-router-dom";
+import {useState} from "react";
 import Card from '@mui/material/Card';
 import CardContent from '@mui/material/CardContent';
 import CardHeader from '@mui/material/CardHeader';
@@ -17,7 +16,6 @@ import ListItem from '@mui/material/ListItem';
 import ListItemText from '@mui/material/ListItemText';
 export default function AllAppointmentsCard({appointment, currentUser}) {
 
-    const history = useHistory()
     const [show, setShow] = useState(false);
     let dateString =  appointment.start_time
     const formatDate = (dateString) => {
@@ -98,6 +96,7 @@ export default function AllAppointmentsCard({appointment, currentUser}) {
                    Edit Appointment
                  </Button>
                  </Link>
+                 {/* <EditAppointment currentUser={currentUser} /> */}
                  <Button style={{backgroundColor: '#009994', color: '#ffff'}} onClick={handleDelete}variant="outlined" startIcon={<DeleteIcon />}>
                    Cancel Appointment 
                  </Button>

@@ -1,9 +1,5 @@
 import React from 'react'
 import { Container, Grid } from "@material-ui/core";
-import Card from '@mui/material/Card';
-import CardHeader from '@mui/material/CardHeader';
-import Typography from '@mui/material/Typography'; 
-import CardContent from '@mui/material/CardContent';
 import AllReviewsCard from  './AllReviewsCard'
 import {useState, useEffect} from "react";
 

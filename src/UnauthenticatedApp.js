@@ -1,28 +1,29 @@
 import './App.css';
 import React from 'react'
+import {useState} from "react";
 import { Switch, Route, Redirect,Link } from 'react-router-dom'
 import Login from './Components/Login'
 import Signup from './Components/Signup'
 import Landing from './Components/Landing'
 import CssBaseline from '@mui/material/CssBaseline';
 import Typography from '@mui/material/Typography';
-import BottomNavigationAction from '@mui/material/BottomNavigationAction';
 import Services from './Components/Services';
 import ListAltIcon from '@mui/icons-material/ListAlt';
-import HomeIcon from '@mui/icons-material/Home';
 import GlobalStyles from '@mui/material/GlobalStyles';
 import AppBar from '@mui/material/AppBar';
 import Toolbar from '@mui/material/Toolbar';
 import styled from "styled-components";
+import Button from '@mui/material/Button';
+import LoginIcon from '@mui/icons-material/Login';
 
 function UnauthenticatedApp({ setCurrentUser }) {
-  // const history = useHistory()
-  // const ref = React.useRef(null);
-  // const [anchorEl, setAnchorEl] = useState(null);
+  const [anchorEl, setAnchorEl] = useState(null);
 
-  // const handleClick = (event) => {
-  //   setAnchorEl(event.currentTarget);
-  // };
+
+  const open = Boolean(anchorEl);
+  const id = open ? 'simple-popover' : undefined;
+
+
 
 
 
@@ -34,27 +35,33 @@ function UnauthenticatedApp({ setCurrentUser }) {
         position="static"
         style={{backgroundColor: '#009994', color: '#fffff'}}
         elevation={0}
-        // sx={{ borderBottom: (theme) => `1px solid ${theme.palette.divider}` }}
       >
         <Toolbar sx={{ flexWrap: 'wrap' }}>
         <Typography variant="h6" color="inherit" noWrap sx={{ flexGrow: 1 }}>
+        <Link to="/"  label={"Home"} style={{ textDecoration: 'none'}}
+          > 
         <LogoWrapper>
         <h3>
           Treehouse <span>Studios</span>
         </h3>
       </LogoWrapper>
+      </Link>
       </Typography> 
           <nav>
-            <Link to="/" 
-          label={"Home"} style={{ textDecoration: 'none'}}
-          > 
-          <BottomNavigationAction  icon={<HomeIcon/>}/> 
-           </Link>
+
            <Link to="/services" 
           label={"services"} style={{ textDecoration: 'none'}}
           > 
-          <BottomNavigationAction icon={<ListAltIcon/>}/> 
+          {/* <BottomNavigationAction icon={<ListAltIcon/>}/>  */}
+          <Button style={{backgroundColor: '#009994', color: '#292929'}}  align="center" size="medium"  variant="text" endIcon={<ListAltIcon />}>
+            Services
+            </Button>
            </Link>
+           <Link  align="center" style={{ textDecoration: 'none' }} to="/login">          
+            <Button style={{backgroundColor: '#009994', color: '#292929'}}  align="center" size="medium"  variant="text" endIcon={<LoginIcon />}>
+            SIGN IN
+            </Button>
+          </Link>
           </nav>
          
         </Toolbar>

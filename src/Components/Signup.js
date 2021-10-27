@@ -2,7 +2,6 @@ import './Page.css'
 import React, { useState } from 'react'
 import { useHistory, Link } from 'react-router-dom'
 import Fab from '@mui/material/Fab';
-import LoginIcon from '@mui/icons-material/Login';
 import Typography from '@mui/material/Typography';
 import AssignmentIcon from '@mui/icons-material/Assignment';
 import TextField from '@mui/material/TextField';
@@ -76,7 +75,7 @@ function Signup({ setCurrentUser }) {
   <p>{error ? (
             <>
               {error.errors.map((error) => (
-                <Alert variant="outlined" severity="error" style={{color: "red"}}>{error}</Alert>
+                <Alert key={error.id} variant="outlined" severity="error" style={{color: "red"}}>{error}</Alert>
               ))}
             </>
           ) : (

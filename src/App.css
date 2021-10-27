@@ -99,7 +99,7 @@ section{
 }
 
 .App{
-  outline: 2px solid black;
+  /* outline: 2px solid black; */
   /* background-color: #EBECEE; */
   height: 100vh;
   /* margin-left:20px;
@@ -107,7 +107,7 @@ section{
 }
 
 .Unauth{
-  outline: 2px dashed red;
+  /* outline: 2px dashed red; */
   height: 100vh;
   /* background-color: #EBECEE; */
 ;
@@ -119,7 +119,7 @@ section{
 
 .Unauth-landing{
   display: flex;
-  height: 91.5vh;
+  height: 90vh;
   flex-direction: column;
   justify-content: center;
   align-content: center; 

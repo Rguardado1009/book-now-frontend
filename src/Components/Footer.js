@@ -10,8 +10,8 @@ import Link from '@mui/material/Link';
 export default function Footer() {
     return (
         <div>
-            <Typography variant="body2" color="text.secondary" align="center">
-                {' Book Now '}
+            <Typography variant="subtitle1" color="secondary" gutterBottom align="center">
+                {' Treehouse Studios '}
                 | Created by Ronald Guardado |
                 {' '}
                 {new Date().getFullYear()}

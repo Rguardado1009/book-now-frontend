@@ -2,8 +2,7 @@ import * as React from 'react';
 import { useState } from 'react'
 import Box from '@mui/material/Box';
 import TextField from '@mui/material/TextField';
-import InputLabel from '@mui/material/InputLabel';
-import FormControlLabel from '@mui/material/FormControlLabel';
+
 import Button from '@mui/material/Button';
 import LoginIcon from '@mui/icons-material/Login';
 import Alert from '@mui/material/Alert';
@@ -11,7 +10,6 @@ import Stack from '@mui/material/Stack';
 import Typography from '@mui/material/Typography';
 import Appointment from './Appointment'
 import NativeSelect from '@mui/material/NativeSelect';
-import {useHistory} from 'react-router-dom'
 import DateAdapter from '@mui/lab/AdapterLuxon';
 import TimePicker from '@mui/lab/TimePicker';
 import LocalizationProvider from '@mui/lab/LocalizationProvider';
@@ -78,7 +76,6 @@ export default function Book({currentUser}) {
   const [service, setService] = useState(1)
   const [errors, setErrors] = useState("");
   const [appointments, setAppointments] = useState(false);
-  const history = useHistory()
   const handleSubmit = (event) => {
     event.preventDefault()
     fetch("http://localhost:3000/appointments", {
@@ -100,19 +97,12 @@ export default function Book({currentUser}) {
         setAppointments(true)
       } else {
         res.json().then((errors) => {
-          console.log(errors);
           setErrors(errors);
         })
       }
     })
 }
-// const [services, setServices] = useState([]);
-// useEffect(()=>{
-//     fetch('http://localhost:3000/services/', {credentials: 'include'})
-//     .then((r) => r.json())
-//     .then((service) => setServices(service));
-//   }, [])
-// console.loge
+
 const handleDate = (newValue) => {
   let dTime = (newValue.toUTC())
   let dateTime = (dTime.toUTC())
@@ -168,11 +158,7 @@ const handleEnd = (newValue) => {
         <Typography variant="h5" gutterBottom>
             Select Service
          </Typography>
-{/*             
-            <InputLabel variant="outlined" htmlFor="uncontrolled">
-          Services
-        </InputLabel>
-         */}
+
         <NativeSelect className="Bookings-service-select"
        style={{textAlignLast:"center"}}
             value={service}
@@ -193,7 +179,7 @@ const handleEnd = (newValue) => {
                type="text"
                id="fullname"
                label="Full Name"
-               // onChange={(e) => setName(e.target.value)}
+          
                defaultValue={currentUser.name}        
              />
         
@@ -207,7 +193,7 @@ const handleEnd = (newValue) => {
           renderInput={(params) => <TextField {...params} />}
         />
            </Stack>   
-         {/* onChange={(e) => setDate(e.target.value)} */}
+         
              <TimePicker
               label="Start Time"
               value={startTime}

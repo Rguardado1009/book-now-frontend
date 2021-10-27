@@ -4,13 +4,10 @@ import { Redirect, useHistory, Link } from 'react-router-dom'
 import Fab from '@mui/material/Fab';
 import LoginIcon from '@mui/icons-material/Login';
 import Typography from '@mui/material/Typography';
-import AssignmentIcon from '@mui/icons-material/Assignment';
 import TextField from '@mui/material/TextField';
 import Box from '@mui/material/Box';
 import Alert from '@mui/material/Alert';
-import Stack from '@mui/material/Stack';
 import styled from "styled-components";
-import Input from "./Input";
 import logo from "/Users/ronald/development/Phase-5/book-now-frontend/src/Logo 3 copy 2.PNG";
 function Login({ setCurrentUser }) {
   const history = useHistory()
@@ -35,7 +32,7 @@ function Login({ setCurrentUser }) {
           })
         } else {
           res.json().then((errors) => {
-            console.log(errors);
+            console.log(errors.error);
             setErrors(errors);
           })
         }
@@ -46,7 +43,6 @@ function Login({ setCurrentUser }) {
     <Container >
       <Box 
     className="login-Box"
-    //   component="form" onSubmit={handleSubmit}
       sx={{
         '& .MuiTextField-root': { m: 1, width: '100%' },
       }}
@@ -69,23 +65,19 @@ function Login({ setCurrentUser }) {
               LOG IN
             {/* </Typography> */}
           </h3>
-            <p>
-             {errors ? (
-               <>
-                 {errors.errors.map((error) => (
-                   <Stack sx={{ width: '100%' }} spacing={4}>
-                <Alert variant="outlined" severity="error" 
-                style={{color: "red"}}
-                >
-                  <strong>{error}</strong>
-                  </Alert> 
-                </Stack>
-                 ))}
-               </>
-             ) : (
-               <></>
-             )}
-           </p>
+          <p>{errors ? (
+            <>
+              {/* {error.error.map((error) => (
+                <Alert key={error.id} variant="outlined" severity="error" style={{color: "red"}}>{error}</Alert>
+              ))} */}
+                <Alert key={errors.id} variant="outlined" severity="error" style={{color: "red"}}>{errors.error}</Alert>
+              
+            </>
+          ) : (
+            <></>
+          )}
+        </p>
+      
   
         <TextField className="login-input"
           required

@@ -12,13 +12,10 @@ import EditAppointment from './Components/EditAppointment';
 import AllAppointments from './Components/AllAppointments';
 import AllReviews from './Components/AllReviews';
 import Checkout from './Components/Checkout';
-import IconButton from '@mui/material/IconButton';
 import Typography from '@mui/material/Typography';
 import CssBaseline from '@mui/material/CssBaseline';
-import BottomNavigationAction from '@mui/material/BottomNavigationAction';
 import Popover from '@mui/material/Popover';
 import CalendarTodayIcon from '@mui/icons-material/CalendarToday';
-import HomeIcon from '@mui/icons-material/Home';
 import AccountCircleIcon from '@mui/icons-material/AccountCircle';
 import ListAltIcon from '@mui/icons-material/ListAlt';
 import BookOnlineSharpIcon from '@mui/icons-material/BookOnlineSharp';
@@ -27,9 +24,9 @@ import AppBar from '@mui/material/AppBar';
 import Toolbar from '@mui/material/Toolbar';
 import GlobalStyles from '@mui/material/GlobalStyles';
 import styled from "styled-components";
-import logo from "/Users/ronald/development/Phase-5/book-now-frontend/src/Logo 3 copy 2.PNG";
+import Button from '@mui/material/Button';
+import UserAccount from './Components/UserAccount'
 function AuthenticatedApp({ currentUser, setCurrentUser }) {
-  
   const history = useHistory()
   const handleLogout = () => {
     fetch(`http://localhost:3000/logout`, {
@@ -70,46 +67,62 @@ function AuthenticatedApp({ currentUser, setCurrentUser }) {
       >
         <Toolbar sx={{ flexWrap: 'wrap' }}>
         <Typography variant="h6" color="inherit" noWrap sx={{ flexGrow: 1 }}>
+        <Link to="/"  label={"Home"} style={{ textDecoration: 'none'}}
+          > 
         <LogoWrapper>
         <h3>
           Treehouse <span>Studios</span>
         </h3>
       </LogoWrapper>
+      </Link>
       </Typography> 
           {/* <Typography variant="h6" color="inherit" noWrap sx={{ flexGrow: 1 }}>
            Book Now
           </Typography> */}
           <nav>
-            <Link to="/" 
+            {/* <Link to="/" 
           label={"Home"} style={{ textDecoration: 'none'}}
           > 
           <BottomNavigationAction  icon={<HomeIcon/>}/> 
-           </Link>
+           </Link> */}
           <Link to="/booking" 
           label={"booking"} style={{ textDecoration: 'none'}}
           > 
-          <BottomNavigationAction icon={<BookOnlineSharpIcon/>}/> 
+          
+          {/* <BottomNavigationAction icon={<BookOnlineSharpIcon/>}/>  */}
+          <Button style={{backgroundColor: '#009994', color: '#292929'}}  align="center" size="medium"  variant="text" endIcon={<BookOnlineSharpIcon />}>
+            Book Now
+            </Button>
            </Link>
           <Link to="/appointment/all" 
           label={"Appointments"} style={{ textDecoration: 'none'}}
           > 
-          <BottomNavigationAction icon={<CalendarTodayIcon/>}/> 
+          {/* <BottomNavigationAction icon={<CalendarTodayIcon/>}/>  */}
+          <Button style={{backgroundColor: '#009994', color: '#292929'}}  align="center" size="medium"  variant="text" endIcon={<CalendarTodayIcon />}>
+            Appointments
+            </Button>
            </Link>
-           <Link to="/services" 
-          label={"services"} style={{ textDecoration: 'none'}}
-          > 
-          <BottomNavigationAction icon={<ListAltIcon/>}/> 
+           <Link to="/services" label={"services"} style={{ textDecoration: 'none'}}> 
+          <Button style={{backgroundColor: '#009994', color: '#292929'}}  align="center" size="medium"  variant="text" endIcon={<ListAltIcon />}>
+            Services
+            </Button>
            </Link>
            <Link to="/reviews" 
           label={"reviews"} style={{ textDecoration: 'none'}}
           > 
-          <BottomNavigationAction icon={<ReviewsIcon/>}/> 
+          {/* <BottomNavigationAction icon={<ReviewsIcon/>}/>  */}
+          <Button style={{backgroundColor: '#009994', color: '#292929'}}  align="center" size="medium"  variant="text" endIcon={<ReviewsIcon/>}>
+            Reviews
+            </Button>
            </Link>
           </nav>
-          <IconButton onClick={handleClick}  style={{backgroundColor: '#009994', color: '#292929'}} href="#" variant="outlined" 
+          {/* <IconButton onClick={handleClick}  style={{backgroundColor: '#009994', color: '#292929'}} href="#" variant="outlined" 
            >
              {<AccountCircleIcon/>}
-             </IconButton>
+             </IconButton> */}
+             <Button onClick={handleClick} style={{backgroundColor: '#009994', color: '#292929'}}  align="center" size="medium"  variant="text" endIcon={<AccountCircleIcon />}>
+            Account
+            </Button>
           <Popover
               id={id}
               open={open}
@@ -120,7 +133,10 @@ function AuthenticatedApp({ currentUser, setCurrentUser }) {
                 horizontal: 'left',
               }}
             >
-          <Typography sx={{ p: 1 }}>Logged in as {currentUser.name}</Typography>
+              <Link to="/user" label={"user"} style={{ textDecoration: 'none'}}> 
+              <Typography style={{ color: '#292929'}} sx={{ p: 1 }}> Account Info </Typography>
+              </Link>
+          
           <Typography  onClick={handleLogout} sx={{ p: 1 }}>Log Out</Typography>
                 </Popover>
         </Toolbar>
@@ -129,6 +145,10 @@ function AuthenticatedApp({ currentUser, setCurrentUser }) {
 
 
       <Switch>
+
+        <Route path="/user" >
+        <UserAccount currentUser={currentUser}/>  
+        </Route>
         <Route path="/reviews" >
         <AllReviews currentUser={currentUser}/>  
         </Route>
@@ -163,6 +183,7 @@ function AuthenticatedApp({ currentUser, setCurrentUser }) {
 					<h1>404 not found</h1>
 				</Route>
       </Switch>
+
     </div>
   );
 }

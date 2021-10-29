@@ -97,12 +97,13 @@ export default function Book({currentUser}) {
         setAppointments(true)
       } else {
         res.json().then((errors) => {
+          console.log(errors)
           setErrors(errors);
         })
       }
     })
 }
-
+console.log(startTime)
 const handleDate = (newValue) => {
   let dTime = (newValue.toUTC())
   let dateTime = (dTime.toUTC())
@@ -208,7 +209,7 @@ const handleEnd = (newValue) => {
              />
          </LocalizationProvider>        
          <Typography variant="h5" gutterBottom>
-            Select Employees
+            Select Preferred Engineer
          </Typography>
         <NativeSelect
             value={employee}
@@ -219,11 +220,11 @@ const handleEnd = (newValue) => {
             id: 'uncontrolled-native',
           }}
         >
-          <option value={1}>Engineer 1</option>
-          <option value={2}>Engineer 2</option>
-          <option value={3}>Engineer 3</option>
-          <option value={4}>Engineer 4</option>
-          <option value={5}>Engineer 5</option>
+          <option value={1}>Bob Clearmountain</option>
+          <option value={2}>Chris Lord-Alge</option>
+          <option value={3}>Tony Maserati</option>
+          <option value={4}>Dave Pensado</option>
+          <option value={5}>Tom Lord-Alge</option>
         </NativeSelect>
        
          <br></br>

@@ -7,12 +7,21 @@ import Typography from '@mui/material/Typography';
 import { makeStyles } from '@mui/styles';
 const useStyles = makeStyles({
     root: {
-      maxWidth: 645,
+      display: 'flex',
+      flexDirection: 'column',
+      alignItems: 'center',
+      justifyContent: 'center',
+      maxWidth: 720,
+      maxHeight: 1280,
       background: '#009994',
       margin: '20px',
     },
     media: {
-      height: 440,
+      display: 'flex',
+      alignItems: 'center',
+      justifyContent: 'center',
+      width: 560,
+      height: 640,
     },
     title: {
       fontFamily: 'roboto',
@@ -33,7 +42,7 @@ export default function ServicesCard({service}) {
      
         {console.log(service.Image)}
          
-      <Card className={classes.root}>
+      <Card style={{color: '#292929', textAlign:'center'}} sx={{ maxWidth: 720, maxHeight: 1280}} elevation={6} className={classes.root}>
         <CardMedia
           className={classes.media}
           image={service.Image}

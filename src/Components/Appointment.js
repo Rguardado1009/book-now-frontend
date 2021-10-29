@@ -39,7 +39,7 @@ function Appointment({currentUser,
     let newEnd = endTime.toLocaleString('en', options);
     let aptDate = date.toLocaleString('en-US', options);
     console.log(aptDate)
-    console.log(newStart)
+    console.log(service)
     return (
         <div>
 
@@ -51,7 +51,7 @@ function Appointment({currentUser,
         '& > :not(style)': {
           m: 6,
           width: '30vh',
-          height: '40vh',
+          height: '45vh',
         },
     }}
 
@@ -62,7 +62,7 @@ function Appointment({currentUser,
 
 <List  sx={{ display: 'flex',
         justifyContent:"center", flexDirection:"column",
-        width: '50%', maxWidth: 260, bgcolor: 'background.paper' }}>
+        width: '50%',maxWidth: 260, bgcolor: 'background.paper' }}>
       <ListItem>
         <ListItemText primary="Date" secondary={`${aptDate}`} />
       </ListItem>

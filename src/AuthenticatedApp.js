@@ -25,7 +25,10 @@ import Toolbar from '@mui/material/Toolbar';
 import GlobalStyles from '@mui/material/GlobalStyles';
 import styled from "styled-components";
 import Button from '@mui/material/Button';
-import UserAccount from './Components/UserAccount'
+import UserAccount from './Components/UserAccount';
+import Employees from './Components/Employees';
+
+
 function AuthenticatedApp({ currentUser, setCurrentUser }) {
   const history = useHistory()
   const handleLogout = () => {
@@ -102,6 +105,11 @@ function AuthenticatedApp({ currentUser, setCurrentUser }) {
             Appointments
             </Button>
            </Link>
+           <Link to="/employees" label={"employees"} style={{ textDecoration: 'none'}}> 
+          <Button style={{backgroundColor: '#009994', color: '#292929'}}  align="center" size="medium"  variant="text" endIcon={<ListAltIcon />}>
+            Employees
+            </Button>
+           </Link>
            <Link to="/services" label={"services"} style={{ textDecoration: 'none'}}> 
           <Button style={{backgroundColor: '#009994', color: '#292929'}}  align="center" size="medium"  variant="text" endIcon={<ListAltIcon />}>
             Services
@@ -151,6 +159,9 @@ function AuthenticatedApp({ currentUser, setCurrentUser }) {
         </Route>
         <Route path="/reviews" >
         <AllReviews currentUser={currentUser}/>  
+        </Route>
+        <Route path="/employees" >
+        <Employees/>  
         </Route>
         <Route path="/services" >
         <Services/>  

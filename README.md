@@ -32,9 +32,6 @@ Technologies
 wireframe 
 https://www.figma.com/file/Zv5j36gIFFRPWekHqJJ9Up/Book-Now?node-id=0%3A1
 
-https://app.asana.com/0/1201177606710171/board
-
-
 Models and Relationships
 
 Users

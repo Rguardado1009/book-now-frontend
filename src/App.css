@@ -1,57 +1,68 @@
-
-html{
+html {
   scroll-behavior: smooth;
 }
-*{
+* {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
-  
 }
-section{
+section {
   height: 100vh;
   width: 100vh;
   display: flex;
   justify-content: center;
-/* Color Theme Swatches in Hex */
-.Mercedes-Petronas-F1-1-hex { color: #979DA6; }
-.Mercedes-Petronas-F1-2-hex { color: #6c7679; }
-.Mercedes-Petronas-F1-3-hex { color: #027373; }
-.Mercedes-Petronas-F1-4-hex { color: #04BFAD; }
-.Mercedes-Petronas-F1-5-hex { color: #0E0F13; }
-/* Color Theme Swatches in Hex */
-.Mercedes-AMG-Petronas-1-hex { color: #FFFFFF; }
-.Mercedes-AMG-Petronas-2-hex { color: #009994; }
-.Mercedes-AMG-Petronas-3-hex { color: #abc0cc; }
-.Mercedes-AMG-Petronas-4-hex { color: #000000; }
-.Mercedes-AMG-Petronas-5-hex { color: #FFFFFF; }
+  /* Color Theme Swatches in Hex */
+  .Mercedes-Petronas-F1-1-hex {
+    color: #979da6;
+  }
+  .Mercedes-Petronas-F1-2-hex {
+    color: #6c7679;
+  }
+  .Mercedes-Petronas-F1-3-hex {
+    color: #027373;
+  }
+  .Mercedes-Petronas-F1-4-hex {
+    color: #04bfad;
+  }
+  .Mercedes-Petronas-F1-5-hex {
+    color: #0e0f13;
+  }
+  /* Color Theme Swatches in Hex */
+  .Mercedes-AMG-Petronas-1-hex {
+    color: #ffffff;
+  }
+  .Mercedes-AMG-Petronas-2-hex {
+    color: #009994;
+  }
+  .Mercedes-AMG-Petronas-3-hex {
+    color: #abc0cc;
+  }
+  .Mercedes-AMG-Petronas-4-hex {
+    color: #000000;
+  }
+  .Mercedes-AMG-Petronas-5-hex {
+    color: #ffffff;
+  }
 }
 
-.App{
-  /* outline: 2px solid black; */
-  /* background-color: #EBECEE; */
+.App {
+
   height: 100vh;
-  /* margin-left:20px;
-  margin-right:20px; */
+
 }
 
-.Unauth{
-  /* outline: 2px dashed red; */
+.Unauth {
+
   height: 100vh;
-  /* background-color: #EBECEE; */
-;
 
-  /* margin-left:20px;
-  margin-right:20px; */
-  /* height: 200px; */
 }
 
-.Unauth-landing{
+.Unauth-landing {
   display: flex;
   height: 90vh;
   flex-direction: column;
   justify-content: center;
-  align-content: center; 
+  align-content: center;
   align-items: center;
   margin: auto;
   /* background-color: #4D565B; */
@@ -59,57 +70,46 @@ section{
   /* outline: 2px solid yellow; */
 }
 
-.Unauth-box{
-  /* outline: 2px dotted blue; */
-
+.Unauth-button-container {
+  display: flex;
+  /* outline: 2px inset black; */
+  flex-basis: auto;
 }
-
-.Unauth-button-container{
-    display: flex;
-    /* outline: 2px inset black; */
-    flex-basis: auto;
-}
-.Auth{
+.Auth {
   /* outline: 2px dashed red; */
   height: 100vh;
   /* background-color: #EBECEE; */
-;
-
   /* margin-left:20px;
   margin-right:20px; */
   /* height: 200px; */
 }
 
-.Auth-landing{
+.Auth-landing {
   display: flex;
   height: 91.5vh;
   flex-direction: column;
   justify-content: center;
-  align-content: center; 
+  align-content: center;
   align-items: center;
   margin: auto;
   /* background-color: #EBECEE; */
 
-
   /* outline: 2px solid green; */
 }
 
-.Auth-box{
+.Auth-box {
   /* outline: 2px dotted purple; */
-
 }
 
-.Auth-button-container{
-    display: flex;
-    /* outline: 2px inset orange; */
-    flex-basis: auto;
+.Auth-button-container {
+  display: flex;
+  /* outline: 2px inset orange; */
+  flex-basis: auto;
 }
-.services{
+.services {
   height: 100vh;
   padding-top: 5rem;
-
 }
-img{
+img {
   padding-bottom: 3rem;
-} 
-
+}

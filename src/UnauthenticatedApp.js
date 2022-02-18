@@ -23,10 +23,6 @@ function UnauthenticatedApp({ setCurrentUser }) {
   const open = Boolean(anchorEl);
   const id = open ? 'simple-popover' : undefined;
 
-
-
-
-
   return (
     <div className='Unauth'>
      <GlobalStyles styles={{ ul: { margin: 0, padding: 0, listStyle: 'none' } }} />

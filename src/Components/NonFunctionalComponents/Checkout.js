@@ -1,52 +1,51 @@
-import * as React from 'react';
-import {useState} from 'react';
-import CssBaseline from '@mui/material/CssBaseline';
-import AppBar from '@mui/material/AppBar';
-import Box from '@mui/material/Box';
-import Container from '@mui/material/Container';
-import Toolbar from '@mui/material/Toolbar';
-import Paper from '@mui/material/Paper';
-import Stepper from '@mui/material/Stepper';
-import Step from '@mui/material/Step';
-import StepLabel from '@mui/material/StepLabel';
-import Button from '@mui/material/Button';
-import Link from '@mui/material/Link';
-import Typography from '@mui/material/Typography';
-import { createTheme, ThemeProvider } from '@mui/material/styles';
-import AddressForm from './AddressForm';
-import PaymentForm from './PaymentForm';
-import ReviewForm from './ReviewForm';
+import * as React from "react";
+import { useState } from "react";
+import CssBaseline from "@mui/material/CssBaseline";
+import AppBar from "@mui/material/AppBar";
+import Box from "@mui/material/Box";
+import Container from "@mui/material/Container";
+import Toolbar from "@mui/material/Toolbar";
+import Paper from "@mui/material/Paper";
+import Stepper from "@mui/material/Stepper";
+import Step from "@mui/material/Step";
+import StepLabel from "@mui/material/StepLabel";
+import Button from "@mui/material/Button";
+import Link from "@mui/material/Link";
+import Typography from "@mui/material/Typography";
+import { createTheme, ThemeProvider } from "@mui/material/styles";
+import AddressForm from "./AddressForm";
+import PaymentForm from "./PaymentForm";
+import ReviewForm from "./ReviewForm";
+
+//Component not functional
 
 function Copyright() {
   return (
     <Typography variant="body2" color="text.secondary" align="center">
-      {'Created by Ronald Guardado | '}
-      Treehouse Studios
-      {' '}
-      {new Date().getFullYear()}
-      {'.'}
+      {"Created by Ronald Guardado | "}
+      Treehouse Studios {new Date().getFullYear()}
+      {"."}
     </Typography>
   );
 }
 
-
 const theme = createTheme();
 
-export default function Checkout({currentUser}) {
-const steps = ['Billing address', 'Payment details', 'Review your details'];
+export default function Checkout({ currentUser }) {
+  const steps = ["Billing address", "Payment details", "Review your details"];
 
-function getStepContent(step) {
-  switch (step) {
-    case 0:
-      return <AddressForm currentUser={currentUser} />;
-    case 1:
-      return <PaymentForm currentUser={currentUser}/>;
-    case 2:
-      return <ReviewForm currentUser={currentUser}/>;
-    default:
-      throw new Error('Unknown step');
+  function getStepContent(step) {
+    switch (step) {
+      case 0:
+        return <AddressForm currentUser={currentUser} />;
+      case 1:
+        return <PaymentForm currentUser={currentUser} />;
+      case 2:
+        return <ReviewForm currentUser={currentUser} />;
+      default:
+        throw new Error("Unknown step");
+    }
   }
-}
 
   const [activeStep, setActiveStep] = useState(0);
 
@@ -63,7 +62,10 @@ function getStepContent(step) {
       <CssBaseline />
 
       <Container component="main" maxWidth="sm" sx={{ mb: 4 }}>
-        <Paper variant="outlined" sx={{ my: { xs: 3, md: 6 }, p: { xs: 2, md: 3 } }}>
+        <Paper
+          variant="outlined"
+          sx={{ my: { xs: 3, md: 6 }, p: { xs: 2, md: 3 } }}
+        >
           <Typography component="h1" variant="h4" align="center">
             Checkout
           </Typography>
@@ -89,7 +91,7 @@ function getStepContent(step) {
             ) : (
               <React.Fragment>
                 {getStepContent(activeStep)}
-                <Box sx={{ display: 'flex', justifyContent: 'flex-end' }}>
+                <Box sx={{ display: "flex", justifyContent: "flex-end" }}>
                   {activeStep !== 0 && (
                     <Button onClick={handleBack} sx={{ mt: 3, ml: 1 }}>
                       Back
@@ -101,7 +103,7 @@ function getStepContent(step) {
                     onClick={handleNext}
                     sx={{ mt: 3, ml: 1 }}
                   >
-                    {activeStep === steps.length - 1 ? 'Place order' : 'Next'}
+                    {activeStep === steps.length - 1 ? "Place order" : "Next"}
                   </Button>
                 </Box>
               </React.Fragment>

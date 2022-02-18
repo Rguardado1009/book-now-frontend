@@ -44,13 +44,12 @@ export default function Book({ currentUser }) {
         setAppointments(true);
       } else {
         res.json().then((errors) => {
-          console.log(errors);
           setErrors(errors);
         });
       }
     });
   };
-  console.log(startTime);
+
   const handleDate = (newValue) => {
     let dTime = newValue.toUTC();
     let dateTime = dTime.toUTC();

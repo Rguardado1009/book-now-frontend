@@ -1,29 +1,29 @@
-import './Page.css'
-import React, { useState } from 'react'
-import { useHistory, Link } from 'react-router-dom'
-import Fab from '@mui/material/Fab';
-import Typography from '@mui/material/Typography';
-import AssignmentIcon from '@mui/icons-material/Assignment';
-import TextField from '@mui/material/TextField';
-import Box from '@mui/material/Box';
-import Alert from '@mui/material/Alert';
+import "./Page.css";
+import React, { useState } from "react";
+import { useHistory, Link } from "react-router-dom";
+import Fab from "@mui/material/Fab";
+import Typography from "@mui/material/Typography";
+import AssignmentIcon from "@mui/icons-material/Assignment";
+import TextField from "@mui/material/TextField";
+import Box from "@mui/material/Box";
+import Alert from "@mui/material/Alert";
 import styled from "styled-components";
 import logo from "/Users/ronald/development/Phase-5/book-now-frontend/src/Logo 3 copy 2.PNG";
 
 function Signup({ setCurrentUser }) {
-  const history = useHistory()
-  const [username, setUsername] = useState('')
-  const [name, setName] = useState('')
-  const [email, setEmail] = useState('')
-  const [password, setPassword] = useState('')
+  const history = useHistory();
+  const [username, setUsername] = useState("");
+  const [name, setName] = useState("");
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
   const [error, setErrors] = useState("");
-  
+
   const handleSubmit = (e) => {
-    e.preventDefault()
-    fetch('http://localhost:3000/signup', {
-      method: 'POST',
+    e.preventDefault();
+    fetch("http://localhost:3000/signup", {
+      method: "POST",
       headers: {
-        'Content-Type': 'application/json'
+        "Content-Type": "application/json",
       },
       body: JSON.stringify({
         email,
@@ -31,117 +31,122 @@ function Signup({ setCurrentUser }) {
         username,
         password,
       }),
-    })
-    .then((res) => {
-        if (res.ok) {
-          res.json().then((user) => {
-            setCurrentUser(user);
-            history.push("/");
-          });
-        } else {
-          res.json().then((error) => {
-            console.log(error);
-            setErrors(error);
-          });
-        }
-      })
-    }
-  
-  return (
-    
-    <Container >
-    <Box 
-  className="login-Box"
-  //   component="form" onSubmit={handleSubmit}
-    sx={{
-      '& .MuiTextField-root': { m: 1, width: '100%' },
-    }}
-    noValidate
-    autoComplete="off"
-  >
- <Form  
-      // className="Bookings-Box"
-      // component="form" 
-      onSubmit={handleSubmit}>
-      <LogoWrapper>
-      <center>
-      <img src={logo} alt="" />
-        </center>
-        <h3>
-          Treehouse <span>Studios</span>
-        </h3>
-      </LogoWrapper>
-      <h3> Register </h3>
-  <p>{error ? (
-            <>
-              {error.errors.map((error) => (
-                <Alert key={error.id} variant="outlined" severity="error" style={{color: "red"}}>{error}</Alert>
-              ))}
-            </>
-          ) : (
-            <></>
-          )}
-        </p>
-      
-      <TextField
-        required
-        id="standard-required"
-        label="Email"
-        defaultValue="Email"
-        variant="standard"
-        value={email}
-        onChange={(e) => setEmail(e.target.value)}
-      />
-    
-    
-      <TextField
-        required
-        id="standard-required"
-        label="Full Name"
-        defaultValue="full name"
-        variant="standard"
-        value={name}
-        onChange={(e) => setName(e.target.value)}
-      />
-   
-      <TextField
-        required
-        id="standard-required"
-        label="Username"
-        defaultValue="username"
-        variant="standard"
-        value={username}
-        onChange={(e) => setUsername(e.target.value)}
-      />  
-      <TextField
-        required
-        id="standard-password-input"
-        label="Password"
-        type="password"
-        autoComplete="current-password"
-        variant="standard"
-        value={password}
-        onChange={(e) => setPassword(e.target.value)}/>
-     
-      <Fab variant="extended" size="medium" color="primary" 
-      aria-label="add" type="submit">      
-      <AssignmentIcon >Register</AssignmentIcon>
-      <Typography variant="button" display="block">
-      Signup      
-      </Typography>
-      </Fab>
+    }).then((res) => {
+      if (res.ok) {
+        res.json().then((user) => {
+          setCurrentUser(user);
+          history.push("/");
+        });
+      } else {
+        res.json().then((error) => {
+          setErrors(error);
+        });
+      }
+    });
+  };
 
-      <h4>
-        Already have an account? {' '}
-        <Link style={{ textDecoration: 'none' }} to="/login">
-          
-          <span>Login</span>
-        </Link>
-        </h4> 
-  </Form>
-  </Box>
-  </Container>
-  )
+  return (
+    <Container>
+      <Box
+        className="login-Box"
+        sx={{
+          "& .MuiTextField-root": { m: 1, width: "100%" },
+        }}
+        noValidate
+        autoComplete="off"
+      >
+        <Form onSubmit={handleSubmit}>
+          <LogoWrapper>
+            <center>
+              <img src={logo} alt="" />
+            </center>
+            <h3>
+              Treehouse <span>Studios</span>
+            </h3>
+          </LogoWrapper>
+          <h3> Register </h3>
+          <p>
+            {error ? (
+              <>
+                {error.errors.map((error) => (
+                  <Alert
+                    key={error.id}
+                    variant="outlined"
+                    severity="error"
+                    style={{ color: "red" }}
+                  >
+                    {error}
+                  </Alert>
+                ))}
+              </>
+            ) : (
+              <></>
+            )}
+          </p>
+
+          <TextField
+            required
+            id="standard-required"
+            label="Email"
+            defaultValue="Email"
+            variant="standard"
+            value={email}
+            onChange={(e) => setEmail(e.target.value)}
+          />
+
+          <TextField
+            required
+            id="standard-required"
+            label="Full Name"
+            defaultValue="full name"
+            variant="standard"
+            value={name}
+            onChange={(e) => setName(e.target.value)}
+          />
+
+          <TextField
+            required
+            id="standard-required"
+            label="Username"
+            defaultValue="username"
+            variant="standard"
+            value={username}
+            onChange={(e) => setUsername(e.target.value)}
+          />
+          <TextField
+            required
+            id="standard-password-input"
+            label="Password"
+            type="password"
+            autoComplete="current-password"
+            variant="standard"
+            value={password}
+            onChange={(e) => setPassword(e.target.value)}
+          />
+
+          <Fab
+            variant="extended"
+            size="medium"
+            color="primary"
+            aria-label="add"
+            type="submit"
+          >
+            <AssignmentIcon>Register</AssignmentIcon>
+            <Typography variant="button" display="block">
+              Signup
+            </Typography>
+          </Fab>
+
+          <h4>
+            Already have an account?{" "}
+            <Link style={{ textDecoration: "none" }} to="/login">
+              <span>Login</span>
+            </Link>
+          </h4>
+        </Form>
+      </Box>
+    </Container>
+  );
 }
 const Form = styled.form`
   /* outline: 2px dotted blue; */
@@ -185,14 +190,13 @@ const LogoWrapper = styled.div`
     font-size: 22px;
   }
   span {
-    color: #4D565B;
+    color: #4d565b;
     font-weight: 300;
     font-size: 18px;
   }
 `;
 
 const Container = styled.div`
-
   min-width: 400px;
   backdrop-filter: blur(35px);
   background-color: rgba(255, 255, 255, 0.8);
@@ -218,4 +222,4 @@ const Container = styled.div`
     }
   }
 `;
-export default Signup
+export default Signup;

@@ -32,8 +32,6 @@ export default function EmployeesCard({ employee }) {
   const classes = useStyles();
   return (
     <div>
-      {console.log(employee)}
-
       <Card
         style={{ color: "#292929", textAlign: "center" }}
         sx={{ maxWidth: 720, maxHeight: 1280 }}
